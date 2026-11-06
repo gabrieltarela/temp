@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diseño Universal para el Aprendizaje (DUA)</title>
+    <!-- Fuentes accesibles y de alta legibilidad -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #f4f6fb;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #475569;
+            --primary-blue: #2563eb;
+            --accent-green: #059669;
+            --accent-yellow: #d97706;
+            --accent-red: #dc2626;
+            --accent-purple: #7c3aed;
+            --border-radius: 16px;
+            --focus-ring: 3px solid #2563eb;
+            --highlight-bg: #fef08a;
+            --highlight-text: #000000;
+            --highlight-border: #f59e0b;
+        }
+
+        /* Estilos en modo Alto Contraste */
+        body.high-contrast {
+            --bg-color: #000000;
+            --card-bg: #121212;
+            --text-main: #ffffff;
+            --text-muted: #e0e0e0;
+            --primary-blue: #60a5fa;
+            --accent-green: #34d399;
+            --accent-yellow: #fbbf24;
+            --accent-red: #f87171;
+            --accent-purple: #a78bfa;
+            --focus-ring: 3px solid #ffff00;
+            --highlight-bg: #ffff00;
+            --highlight-text: #000000;
+            --highlight-border: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Atkinson Hyperlegible', 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 20px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Contenedor principal */
+        .accessible-content {
+            font-size: var(--user-font-scale, 1rem);
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* Animaciones dinámicas sutiles (DUA Engagement) */
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(2deg); }
+        }
+
+        @keyframes pulseSoft {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .animated-icon {
+                animation: none !important;
+            }
+        }
+
+        header {
+            max-width: 1000px;
+            margin: 0 auto 30px auto;
+            text-align: center;
+            background: linear-gradient(135deg, #1e40af 0%, #7c3aed 100%);
+            color: #ffffff;
+            padding: 40px 20px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .header-avatar {
+            width: 90px;
+            height: 90px;
+            animation: floatSlow 4s ease-in-out infinite;
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            max-width: 700px;
+        }
+
+        /* Barra de herramientas DUA / Accesibilidad */
+        .dua-toolbar {
+            max-width: 1000px;
+            margin: 0 auto 25px auto;
+            background: var(--card-bg);
+            padding: 15px 20px;
+            border-radius: 12px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .toolbar-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .toolbar-title {
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+        }
+
+        .btn-acc {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            border: 2px solid #cbd5e1;
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-acc:hover, .btn-acc:focus {
+            background-color: var(--primary-blue);
+            color: #ffffff;
+            border-color: var(--primary-blue);
+            outline: none;
+        }
+
+        .btn-acc.active {
+            background-color: var(--primary-blue);
+            color: #ffffff;
+            border-color: var(--primary-blue);
+        }
+
+        /* Estilo para el resaltado palabra por palabra (Sincronizado) */
+        .word-active {
+            background-color: var(--highlight-bg) !important;
+            color: var(--highlight-text) !important;
+            border-radius: 4px;
+            padding: 2px 4px;
+            box-shadow: 0 0 0 2px var(--highlight-border);
+            font-weight: bold;
+            transition: background-color 0.1s ease, transform 0.1s ease;
+            display: inline-block;
+        }
+
+        /* Regla de lectura visual */
+        #reading-guide {
+            display: none;
+            position: fixed;
+            left: 0;
+            width: 100%;
+            height: 36px;
+            background: rgba(254, 240, 138, 0.35);
+            border-top: 2px solid #d97706;
+            border-bottom: 2px solid #d97706;
+            pointer-events: none;
+            z-index: 9999;
+            box-shadow: 0 0 15px rgba(217, 119, 6, 0.2);
+        }
+
+        /* Tarjetas temáticas con código de color */
+        .dua-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 28px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            border-left: 8px solid var(--card-accent, #2563eb);
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 20px;
+            align-items: start;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .dua-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+        }
+
+        .card-avatar-container {
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            background-color: var(--avatar-bg, #eff6ff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .card-avatar-container svg {
+            width: 40px;
+            height: 40px;
+        }
+
+        .anim-float { animation: floatSlow 3.5s ease-in-out infinite; }
+        .anim-pulse { animation: pulseSoft 2.5s ease-in-out infinite; }
+
+        .card-blue { --card-accent: var(--primary-blue); --avatar-bg: #eff6ff; }
+        .card-green { --card-accent: var(--accent-green); --avatar-bg: #ecfdf5; }
+        .card-yellow { --card-accent: var(--accent-yellow); --avatar-bg: #fffbe2; }
+        .card-sky { --card-accent: #0284c7; --avatar-bg: #f0f9ff; }
+        .card-red { --card-accent: var(--accent-red); --avatar-bg: #fef2f2; }
+        .card-purple { --card-accent: var(--accent-purple); --avatar-bg: #f5f3ff; }
+
+        .dua-card-content h2 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.3em;
+            color: var(--text-main);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .dua-card-content p {
+            color: var(--text-muted);
+            font-size: 1em;
+        }
+
+        /* Sección Multimedia */
+        .multimedia-section {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            margin-top: 10px;
+        }
+
+        .multimedia-section h2 {
+            font-size: 1.4em;
+            margin-bottom: 20px;
+            color: var(--text-main);
+            border-bottom: 2px solid var(--primary-blue);
+            padding-bottom: 8px;
+            display: inline-block;
+        }
+
+        .media-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        @media (min-width: 768px) {
+            .media-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .media-box {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .media-box h3 {
+            font-size: 1.1em;
+            color: var(--text-main);
+        }
+
+        .img-container {
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            background: #f8fafc;
+        }
+
+        .img-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .video-card-fallback {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            background-color: #0f172a;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+        }
+
+        .video-card-fallback img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+        .video-card-fallback:hover img {
+            opacity: 0.85;
+        }
+
+        .play-button-overlay {
+            position: absolute;
+            z-index: 2;
+            background-color: #dc2626;
+            color: white;
+            padding: 14px 24px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: transform 0.2s ease;
+        }
+
+        .video-card-fallback:hover .play-button-overlay {
+            transform: scale(1.05);
+        }
+
+        footer {
+            max-width: 1000px;
+            margin: 40px auto 20px auto;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        a:focus-visible, button:focus-visible {
+            outline: var(--focus-ring);
+            outline-offset: 2px;
+        }
+
+        @media (max-width: 600px) {
+            .dua-card {
+                grid-template-columns: 1fr;
+                justify-items: center;
+                text-align: center;
+            }
+            .dua-card-content h2 {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Regla de lectura visual -->
+    <div id="reading-guide" aria-hidden="true"></div>
+
+    <!-- Encabezado Principal con Avatar SVG Animado DUA -->
+    <header role="banner">
+        <svg class="header-avatar animated-icon" viewBox="0 0 100 100" aria-hidden="true">
+            <circle cx="50" cy="50" r="45" fill="#ffffff" opacity="0.2"/>
+            <path d="M50 20 C30 20 20 35 20 50 C20 65 30 80 50 80 C70 80 80 65 80 50 C80 35 70 20 50 20 Z" fill="#ffffff" opacity="0.9"/>
+            <circle cx="35" cy="45" r="5" fill="#2563eb"/>
+            <circle cx="65" cy="45" r="5" fill="#7c3aed"/>
+            <path d="M40 65 Q50 75 60 65" stroke="#2563eb" stroke-width="4" fill="none" stroke-linecap="round"/>
+            <polygon points="50,10 55,20 45,20" fill="#f59e0b"/>
+            <polygon points="85,50 75,55 75,45" fill="#f59e0b"/>
+        </svg>
+        <h1>Diseño Universal para el Aprendizaje</h1>
+        <p>Un marco pedagógico inclusivo orientado a maximizar las oportunidades de aprendizaje para la totalidad del estudiantado.</p>
+    </header>
+
+    <!-- Barra de Herramientas DUA -->
+    <section class="dua-toolbar" aria-label="Herramientas de accesibilidad para la lectura">
+        <div class="toolbar-group">
+            <span class="toolbar-title">Tamaño texto:</span>
+            <button class="btn-acc" onclick="changeFontSize(2)" aria-label="Aumentar tamaño del texto">A+</button>
+            <button class="btn-acc" onclick="changeFontSize(-2)" aria-label="Reducir tamaño del texto">A-</button>
+            <button class="btn-acc" onclick="resetFontSize()" aria-label="Restablecer tamaño del texto">Normal</button>
+        </div>
+        <div class="toolbar-group">
+            <button class="btn-acc" id="contrastToggle" onclick="toggleContrast()" aria-pressed="false">
+                <span>👁️</span> Alto Contraste
+            </button>
+            <button class="btn-acc" id="guideToggle" onclick="toggleReadingGuide()" aria-pressed="false">
+                <span>📏</span> Guía Lectura
+            </button>
+            <button class="btn-acc" id="btnReadAll" onclick="readAloud()" aria-label="Escuchar todo el contenido en voz alta">
+                <span id="readAllIcon">🔊</span> <span id="readAllText">Escuchar Todo</span>
+            </button>
+            <button class="btn-acc" id="btnReadSel" onclick="readSelectedText()" aria-label="Escuchar únicamente el texto seleccionado">
+                <span id="readSelIcon">📝</span> <span id="readSelText">Escuchar Selección</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- Contenido Educativo Principal -->
+    <main class="accessible-content" id="main-content" role="main">
+
+        <!-- Tarjeta 1: Qué es el DUA -->
+        <article class="dua-card card-blue">
+            <div class="card-avatar-container animated-icon anim-float" aria-hidden="true">
+                <svg viewBox="0 0 64 64" fill="none">
+                    <circle cx="32" cy="32" r="26" fill="#2563eb" opacity="0.15"/>
+                    <circle cx="32" cy="32" r="22" stroke="#2563eb" stroke-width="3"/>
+                    <path d="M10 32 H54 M32 10 C38 18 38 46 32 54 M32 10 C26 18 26 46 32 54" stroke="#2563eb" stroke-width="2"/>
+                </svg>
+            </div>
+            <div class="dua-card-content">
+                <h2>1. ¿Qué es el DUA?</h2>
+                <p>El Diseño Universal para el Aprendizaje (DUA) es un enfoque educativo diseñado para garantizar que todos los estudiantes puedan acceder al conocimiento, considerando sus diversas formas de aprender, capacidades e intereses. Su objetivo central es eliminar las barreras pedagógicas y ofrecer múltiples formas de representación, expresión y motivación.</p>
+            </div>
+        </article>
+
+        <!-- Tarjeta 2: Barreras y Variabilidad -->
+        <article class="dua-card card-green">
+            <div class="card-avatar-container animated-icon anim-pulse" aria-hidden="true">
+                <svg viewBox="0 0 64 64" fill="none">
+                    <rect x="12" y="12" width="40" height="40" rx="8" fill="#059669" opacity="0.15"/>
+                    <path d="M20 24 H32 C32 20 36 20 36 24 H44 V36 C40 36 40 40 44 40 V44 H32 V40 C32 44 28 44 28 40 H20 V20 Z" stroke="#059669" stroke-width="3" fill="#ffffff"/>
+                </svg>
+            </div>
+            <div class="dua-card-content">
+                <h2>2. Barreras y Variabilidad</h2>
+                <p>En el modelo DUA, las barreras de aprendizaje no residen en el estudiante, sino en la rigidez de los métodos de enseñanza. La variabilidad humana reconoce que cada persona aprende de manera única. Por tanto, es imprescindible trazar múltiples caminos pedagógicos adaptados a la diversidad del aula.</p>
+            </div>
+        </article>
+
+        <!-- Tarjeta 3: Aprendizaje Experto -->
+        <article class="dua-card card-yellow">
+            <div class="card-avatar-container animated-icon anim-float" aria-hidden="true">
+                <svg viewBox="0 0 64 64" fill="none">
+                    <path d="M32 12 C22 12 16 20 16 30 C16 38 22 42 24 48 H40 C42 42 48 38 48 30 C48 20 42 12 32 12 Z" fill="#d97706" opacity="0.2"/>
+                    <path d="M32 12 C22 12 16 20 16 30 C16 38 22 42 24 48 H40 C42 42 48 38 48 30 C48 20 42 12 32 12 Z" stroke="#d97706" stroke-width="3"/>
+                    <path d="M26 54 H38 M28 58 H36" stroke="#d97706" stroke-width="3" stroke-linecap="round"/>
+                </svg>
+            </div>
+            <div class="dua-card-content">
+                <h2>3. Aprendizaje Experto</h2>
+                <p>Se refiere a la capacidad de aprender de forma autónoma, estratégica y motivada. El DUA busca formar aprendices expertos en su propio proceso de formación, capacitándolos para tomar decisiones informadas sobre su modo de aprender.</p>
+            </div>
+        </article>
+
+        <!-- Tarjeta 4: Establecer un Objetivo -->
+        <article class="dua-card card-sky">
+            <div class="card-avatar-container animated-icon anim-pulse" aria-hidden="true">
+                <svg viewBox="0 0 64 64" fill="none">
+                    <circle cx="32" cy="32" r="22" stroke="#0284c7" stroke-width="3" fill="#0284c7" fill-opacity="0.1"/>
+                    <circle cx="32" cy="32" r="14" stroke="#0284c7" stroke-width="2"/>
+                    <circle cx="32" cy="32" r="6" fill="#0284c7"/>
+                </svg>
+            </div>
+            <div class="dua-card-content">
+                <h2>4. Establecer un Objetivo Accesible</h2>
+                <p>Los objetivos de aprendizaje dentro del DUA deben ser claros, flexibles y desligados de un medio único de ejecución. Esto permite a los estudiantes alcanzar la meta por diversas vías sin reducir las expectativas ni el rigor educativo.</p>
+            </div>
+        </article>
+
+        <!-- Tarjeta 5: Creando una Evaluación -->
+        <article class="dua-card card-red">
+            <div class="card-avatar-container animated-icon anim-float" aria-hidden="true">
+                <svg viewBox="0 0 64 64" fill="none">
+                    <rect x="16" y="12" width="32" height="40" rx="4" stroke="#dc2626" stroke-width="3" fill="#dc2626" fill-opacity="0.1"/>
+                    <path d="M22 24 L26 28 L34 20 M22 36 H38" stroke="#dc2626" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <div class="dua-card-content">
+                <h2>5. Creando una Evaluación Inclusiva</h2>
+                <p>La evaluación DUA es continua, formativa y diversificada. Otorga al alumnado distintas alternativas para demostrar sus competencias adquiridas, trascendiendo las pruebas escritas tradicionales mediante proyectos, exposiciones u oralidad y formatos multimedia.</p>
+            </div>
+        </article>
+
+        <!-- Tarjeta 6: Métodos y Materiales -->
+        <article class="dua-card card-purple">
+            <div class="card-avatar-container animated-icon anim-pulse" aria-hidden="true">
+                <svg viewBox="0 0 64 64" fill="none">
+                    <path d="M32 14 L50 24 L32 34 L14 24 Z" stroke="#7c3aed" stroke-width="3" fill="#7c3aed" fill-opacity="0.2"/>
+                    <path d="M14 32 L32 42 L50 32 M14 40 L32 50 L50 40" stroke="#7c3aed" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <div class="dua-card-content">
+                <h2>6. Métodos y Materiales de Instrucción</h2>
+                <p>Plantea la incorporación activa de recursos variados (textos accesibles, soporte audiovisual, esquemas conceptuales y actividades interactivas) para garantizar la equidad en el acceso a la información.</p>
+            </div>
+        </article>
+
+        <!-- Sección Multimedia -->
+        <section class="multimedia-section" aria-label="Recursos Didácticos Multimedia">
+            <h2>Múltiples Formas de Representación (Recursos)</h2>
+            
+            <div class="media-grid">
+                <div class="media-box">
+                    <h3>Representación Gráfica del DUA</h3>
+                    <div class="img-container">
+                        <img src="https://uruguayeduca.anep.edu.uy/sites/default/files/inline-images/cuadro_dua2_0.jpg" 
+                             alt="Cuadro sinóptico detallado del Diseño Universal para el Aprendizaje desarrollado por ANEP UruguayEduca, explicando los principios de Representación, Acción y Expresión, y Compromiso." 
+                             loading="lazy">
+                    </div>
+                </div>
+
+                <div class="media-box">
+                    <h3>Video Explicativo (Audiovisuales UNED)</h3>
+                    <a href="https://www.youtube.com/watch?v=u8tK8UkoAmM" target="_blank" rel="noopener noreferrer" class="video-card-fallback" aria-label="Ver video en YouTube: DUA: Diseño Universal para el Aprendizaje – Educación inclusiva y modelo pedagógico por Audiovisuales UNED">
+                        <img src="https://img.youtube.com/vi/u8tK8UkoAmM/hqdefault.jpg" alt="Miniatura del video explicativo sobre DUA de la UNED" loading="lazy">
+                        <div class="play-button-overlay">
+                            <span>▶ Ver en YouTube</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer role="contentinfo">
+        <p>Recurso Educativo Abierto estructurado bajo pautas de accesibilidad universal (WCAG 2.1 AA / DUA).</p>
+    </footer>
+
+    <!-- Scripts de interactividad DUA -->
+    <script>
+        let currentFontSize = 16;
+        let guideActive = false;
+        let isPrepared = false;
+        let allBlocks = [];
+        let currentBlockIndex = 0;
+        let isSpeaking = false;
+
+        // 1. Tamaños de texto
+        function changeFontSize(amount) {
+            currentFontSize += amount;
+            if (currentFontSize < 12) currentFontSize = 12;
+            if (currentFontSize > 28) currentFontSize = 28;
+            document.documentElement.style.setProperty('--user-font-scale', currentFontSize + 'px');
+        }
+
+        function resetFontSize() {
+            currentFontSize = 16;
+            document.documentElement.style.setProperty('--user-font-scale', '16px');
+        }
+
+        // 2. Alto Contraste
+        function toggleContrast() {
+            const body = document.body;
+            const btn = document.getElementById('contrastToggle');
+            body.classList.toggle('high-contrast');
+            const isHigh = body.classList.contains('high-contrast');
+            btn.setAttribute('aria-pressed', isHigh);
+        }
+
+        // 3. Guía de Lectura
+        function toggleReadingGuide() {
+            guideActive = !guideActive;
+            const guide = document.getElementById('reading-guide');
+            const btn = document.getElementById('guideToggle');
+            guide.style.display = guideActive ? 'block' : 'none';
+            btn.setAttribute('aria-pressed', guideActive);
+            if (guideActive) btn.classList.add('active');
+            else btn.classList.remove('active');
+        }
+
+        document.addEventListener('mousemove', (e) => {
+            if (guideActive) {
+                const guide = document.getElementById('reading-guide');
+                guide.style.top = (e.clientY - 18) + 'px';
+            }
+        });
+
+        // 4. Preparar el DOM dividiendo por bloques de párrafos/títulos
+        function prepareDOMWords() {
+            if (isPrepared) return;
+            const mainContent = document.getElementById('main-content');
+            allBlocks = [];
+
+            const blockElements = mainContent.querySelectorAll('h2, h3, p');
+
+            blockElements.forEach(block => {
+                const spansInBlock = [];
+                const childNodes = Array.from(block.childNodes);
+
+                childNodes.forEach(node => {
+                    if (node.nodeType === Node.TEXT_NODE) {
+                        const text = node.textContent;
+                        if (!text.trim()) return;
+
+                        const frag = document.createDocumentFragment();
+                        const parts = text.split(/(\s+)/);
+
+                        parts.forEach(part => {
+                            if (!part) return;
+                            if (/\S/.test(part)) {
+                                const span = document.createElement('span');
+                                span.className = 'dua-word';
+                                span.textContent = part;
+                                frag.appendChild(span);
+                                spansInBlock.push(span);
+                            } else {
+                                frag.appendChild(document.createTextNode(part));
+                            }
+                        });
+
+                        block.replaceChild(frag, node);
+                    } else if (node.nodeType === Node.ELEMENT_NODE && node.tagName === 'SPAN' && node.classList.contains('dua-word')) {
+                        spansInBlock.push(node);
+                    }
+                });
+
+                if (spansInBlock.length > 0) {
+                    allBlocks.push({
+                        element: block,
+                        spans: spansInBlock
+                    });
+                }
+            });
+
+            isPrepared = true;
+        }
+
+        function clearHighlights() {
+            document.querySelectorAll('.word-active').forEach(w => w.classList.remove('word-active'));
+        }
+
+        function resetSpeechButtons() {
+            const btnAllIcon = document.getElementById('readAllIcon');
+            const btnAllText = document.getElementById('readAllText');
+            if (btnAllIcon && btnAllText) {
+                btnAllIcon.textContent = '🔊';
+                btnAllText.textContent = 'Escuchar Todo';
+            }
+
+            const btnSelIcon = document.getElementById('readSelIcon');
+            const btnSelText = document.getElementById('readSelText');
+            if (btnSelIcon && btnSelText) {
+                btnSelIcon.textContent = '📝';
+                btnSelText.textContent = 'Escuchar Selección';
+            }
+        }
+
+        function stopSpeech() {
+            isSpeaking = false;
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+            }
+            clearHighlights();
+            resetSpeechButtons();
+        }
+
+        // 5. Reproducción Párrafo por Párrafo con Pausa Sincronizada al final de cada párrafo
+        function playBlockSequence(targetBlocks, isSelection) {
+            if (!('speechSynthesis' in window)) {
+                alert("Su navegador no soporta la lectura de voz automática.");
+                return;
+            }
+
+            stopSpeech();
+            if (!targetBlocks || targetBlocks.length === 0) return;
+
+            isSpeaking = true;
+            currentBlockIndex = 0;
+
+            resetSpeechButtons();
+            if (isSelection) {
+                document.getElementById('readSelIcon').textContent = '⏸️';
+                document.getElementById('readSelText').textContent = 'Detener';
+            } else {
+                document.getElementById('readAllIcon').textContent = '⏸️';
+                document.getElementById('readAllText').textContent = 'Detener';
+            }
+
+            function speakNextBlock() {
+                if (!isSpeaking || currentBlockIndex >= targetBlocks.length) {
+                    stopSpeech();
+                    return;
+                }
+
+                const currentBlockData = targetBlocks[currentBlockIndex];
+                const spans = currentBlockData.spans;
+
+                clearHighlights();
+
+                const spanMap = [];
+                let textToSpeak = "";
+
+                spans.forEach(span => {
+                    const wordStr = span.textContent;
+                    const start = textToSpeak.length;
+                    textToSpeak += wordStr;
+                    const end = textToSpeak.length;
+                    spanMap.push({ element: span, start, end });
+                    textToSpeak += " ";
+                });
+
+                const utterance = new SpeechSynthesisUtterance(textToSpeak.trim());
+                utterance.lang = 'es-ES';
+                utterance.rate = 0.90;
+
+                let activeSpan = null;
+
+                if (spans.length > 0) {
+                    activeSpan = spans[0];
+                    activeSpan.classList.add('word-active');
+                    activeSpan.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }
+
+                utterance.onboundary = (event) => {
+                    if (!isSpeaking) return;
+                    if (event.name === 'word' || event.name === '') {
+                        const charIdx = event.charIndex;
+                        const match = spanMap.find(item => charIdx >= item.start && charIdx < item.end) ||
+                                      spanMap.find(item => item.start >= charIdx);
+
+                        if (match && match.element !== activeSpan) {
+                            if (activeSpan) activeSpan.classList.remove('word-active');
+                            activeSpan = match.element;
+                            activeSpan.classList.add('word-active');
+                            activeSpan.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                        }
+                    }
+                };
+
+                // ¡Sincronización de barrera por párrafo!:
+                // El resaltado NO puede avanzar al siguiente párrafo hasta que la voz finalice este párrafo (evento onend)
+                utterance.onend = () => {
+                    if (!isSpeaking) return;
+                    currentBlockIndex++;
+                    if (currentBlockIndex < targetBlocks.length) {
+                        setTimeout(() => {
+                            if (isSpeaking) speakNextBlock();
+                        }, 250); // Pausa sutil entre párrafos
+                    } else {
+                        stopSpeech();
+                    }
+                };
+
+                utterance.onerror = () => {
+                    if (!isSpeaking) return;
+                    currentBlockIndex++;
+                    if (currentBlockIndex < targetBlocks.length) {
+                        speakNextBlock();
+                    } else {
+                        stopSpeech();
+                    }
+                };
+
+                window.speechSynthesis.speak(utterance);
+            }
+
+            speakNextBlock();
+        }
+
+        // Lectura completa por párrafos
+        function readAloud() {
+            if (isSpeaking) {
+                stopSpeech();
+                return;
+            }
+            prepareDOMWords();
+            playBlockSequence(allBlocks, false);
+        }
+
+        // Lectura de Selección por párrafos
+        function readSelectedText() {
+            if (isSpeaking) {
+                stopSpeech();
+                return;
+            }
+
+            const selection = window.getSelection();
+            const selectedText = selection ? selection.toString().trim() : '';
+
+            if (!selectedText) {
+                alert("Por favor, seleccione primero con el ratón o el dedo el fragmento de texto que desea escuchar.");
+                return;
+            }
+
+            prepareDOMWords();
+
+            if (selection.rangeCount === 0) return;
+            const range = selection.getRangeAt(0);
+
+            const selectedBlocks = [];
+
+            allBlocks.forEach(blockData => {
+                const matchingSpans = blockData.spans.filter(span => {
+                    try {
+                        return range.intersectsNode(span);
+                    } catch(e) {
+                        return false;
+                    }
+                });
+
+                if (matchingSpans.length > 0) {
+                    selectedBlocks.push({
+                        element: blockData.element,
+                        spans: matchingSpans
+                    });
+                }
+            });
+
+            if (selectedBlocks.length === 0) {
+                alert("Por favor, seleccione un fragmento de texto dentro del contenido educativo.");
+                return;
+            }
+
+            playBlockSequence(selectedBlocks, true);
+        }
+    </script>
+
+</body>
+</html>
