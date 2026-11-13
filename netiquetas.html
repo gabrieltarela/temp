@@ -1,0 +1,1660 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light" data-font="normal" data-dyslexia="false" data-easyread="false">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Netiquetas: Convivencia Digital (Guía Interactiva DUA)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Fuentes accesibles: Inter y Atkinson Hyperlegible (especial para baja visión y dislexia) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ==========================================================================
+       SISTEMA DE TOKENS Y TEMAS DUA (REPRESENTACIÓN VISUAL ACCESIBLE)
+       ========================================================================== */
+    :root {
+      --bg-app: #E6F8F5;           /* Pastel menta suave solicitado */
+      --bg-gradient-end: #E0F2FE;  /* Pastel cielo suave solicitado */
+      --bg-card: #FFFFFF;
+      --bg-card-alt: #F8FAFC;
+      --bg-toolbar: rgba(255, 255, 255, 0.95);
+      --text-primary: #0F172A;
+      --text-secondary: #334155;
+      --text-muted: #64748B;
+      --accent-primary: #0284C7;
+      --accent-hover: #0369A1;
+      --accent-soft: #E0F2FE;
+      --mint-accent: #0D9488;
+      --mint-soft: #CCFBF1;
+      --border-color: #CBD5E1;
+      --focus-ring: #0284C7;
+      --success-bg: #DCFCE7;
+      --success-text: #166534;
+      --success-border: #86EFAC;
+      --warning-bg: #FEF3C7;
+      --warning-text: #92400E;
+      --warning-border: #FCD34D;
+      --danger-bg: #FEE2E2;
+      --danger-text: #991B1B;
+      --danger-border: #FCA5A5;
+      --shadow-card: 0 4px 20px -2px rgba(15, 23, 42, 0.06);
+      --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      --font-scale: 1;
+      --line-height: 1.6;
+      --letter-spacing: normal;
+    }
+
+    /* Tema Oscuro de Alto Confort */
+    [data-theme="dark"] {
+      --bg-app: #0B1120;
+      --bg-gradient-end: #0F172A;
+      --bg-card: #1E293B;
+      --bg-card-alt: #0F172A;
+      --bg-toolbar: rgba(30, 41, 59, 0.96);
+      --text-primary: #F8FAFC;
+      --text-secondary: #E2E8F0;
+      --text-muted: #94A3B8;
+      --accent-primary: #38BDF8;
+      --accent-hover: #7DD3FC;
+      --accent-soft: rgba(56, 189, 248, 0.15);
+      --mint-accent: #2DD4BF;
+      --mint-soft: rgba(45, 212, 191, 0.15);
+      --border-color: #334155;
+      --focus-ring: #38BDF8;
+      --success-bg: rgba(22, 101, 52, 0.35);
+      --success-text: #86EFAC;
+      --success-border: #166534;
+      --warning-bg: rgba(146, 64, 14, 0.35);
+      --warning-text: #FDE68A;
+      --warning-border: #92400E;
+      --danger-bg: rgba(153, 27, 27, 0.35);
+      --danger-text: #FCA5A5;
+      --danger-border: #991B1B;
+      --shadow-card: 0 4px 20px -2px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Tema Alto Contraste (WCAG AAA) */
+    [data-theme="contrast"] {
+      --bg-app: #000000;
+      --bg-gradient-end: #000000;
+      --bg-card: #000000;
+      --bg-card-alt: #111111;
+      --bg-toolbar: #000000;
+      --text-primary: #FFFFFF;
+      --text-secondary: #FFFF00;
+      --text-muted: #E5E5E5;
+      --accent-primary: #FFFF00;
+      --accent-hover: #00FFFF;
+      --accent-soft: #1A1A00;
+      --mint-accent: #00FFFF;
+      --mint-soft: #001A1A;
+      --border-color: #FFFFFF;
+      --focus-ring: #00FFFF;
+      --success-bg: #002200;
+      --success-text: #00FF00;
+      --success-border: #00FF00;
+      --warning-bg: #221A00;
+      --warning-text: #FFFF00;
+      --warning-border: #FFFF00;
+      --danger-bg: #220000;
+      --danger-text: #FF5555;
+      --danger-border: #FF5555;
+      --shadow-card: none;
+    }
+
+    /* Escalado de fuente DUA */
+    [data-font="large"] { --font-scale: 1.15; }
+    [data-font="xlarge"] { --font-scale: 1.3; }
+
+    /* Tipografía y espaciado amigable para dislexia */
+    [data-dyslexia="true"] {
+      --font-family: 'Atkinson Hyperlegible', Verdana, sans-serif;
+      --line-height: 1.85;
+      --letter-spacing: 0.03em;
+    }
+
+    /* Modo Lectura Fácil (Oculta detalles extensos y destaca ideas clave) */
+    [data-easyread="true"] .detailed-text {
+      display: none !important;
+    }
+    [data-easyread="false"] .easy-text {
+      display: none !important;
+    }
+
+    html {
+      font-size: calc(16px * var(--font-scale));
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-family);
+      line-height: var(--line-height);
+      letter-spacing: var(--letter-spacing);
+      background: linear-gradient(135deg, var(--bg-app) 0%, var(--bg-gradient-end) 100%);
+      color: var(--text-primary);
+      min-height: 100vh;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    /* Anillo de enfoque visible para navegación por teclado (DUA Acción y Expresión) */
+    *:focus-visible {
+      outline: 3px solid var(--focus-ring);
+      outline-offset: 3px;
+    }
+
+    .dua-card {
+      background-color: var(--bg-card);
+      border: 1.5px solid var(--border-color);
+      box-shadow: var(--shadow-card);
+      border-radius: 1.25rem;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .dua-card-alt {
+      background-color: var(--bg-card-alt);
+      border: 1px solid var(--border-color);
+      border-radius: 1rem;
+    }
+
+    /* Resaltado activo cuando el sintetizador de voz está leyendo un bloque */
+    .tts-speaking {
+      border-color: var(--accent-primary) !important;
+      box-shadow: 0 0 0 4px var(--accent-soft) !important;
+    }
+
+    /* Animaciones suaves */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in {
+      animation: fadeIn 0.35s ease forwards;
+    }
+
+    /* Estilos de contraste explícito para alto contraste */
+    [data-theme="contrast"] button,
+    [data-theme="contrast"] input,
+    [data-theme="contrast"] textarea,
+    [data-theme="contrast"] select {
+      border: 2px solid #FFFFFF !important;
+    }
+  </style>
+</head>
+<body class="antialiased pb-20">
+
+  <!-- Enlace rápido para lectores de pantalla y teclado -->
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:px-4 focus:py-2 focus:rounded-lg focus:font-bold" style="background: var(--accent-primary); color: #fff;">
+    Saltar al contenido principal
+  </a>
+
+  <!-- ==========================================================================
+       BARRA DE HERRAMIENTAS DE ACCESIBILIDAD DUA (PRINCIPIO 1: REPRESENTACIÓN)
+       ========================================================================== -->
+  <header class="sticky top-0 z-40 border-b backdrop-blur-md transition-colors" style="background-color: var(--bg-toolbar); border-color: var(--border-color);">
+    <div class="max-w-6xl mx-auto px-4 py-2.5">
+      <div class="flex flex-wrap items-center justify-between gap-2">
+        <!-- Marca e indicador DUA -->
+        <div class="flex items-center gap-2.5">
+          <div class="w-9 h-9 rounded-xl flex items-center justify-center font-bold text-white shadow-sm" style="background: linear-gradient(135deg, #0D9488, #0284C7);">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/>
+            </svg>
+          </div>
+          <div>
+            <span class="font-extrabold text-sm sm:text-base tracking-tight block leading-tight">Netiquetas DUA</span>
+            <span class="text-xs font-medium block" style="color: var(--text-muted);">Aprendizaje Universal Accesible</span>
+          </div>
+        </div>
+
+        <!-- Controles de Accesibilidad DUA -->
+        <div role="region" aria-label="Herramientas de accesibilidad DUA" class="flex flex-wrap items-center gap-1.5 sm:gap-2">
+          
+          <!-- Selector de Tema / Contraste -->
+          <div class="flex items-center rounded-xl p-1 border" style="background-color: var(--bg-card-alt); border-color: var(--border-color);" role="group" aria-label="Modo visual y contraste">
+            <button type="button" onclick="setTheme('light')" id="btn-theme-light" class="px-2.5 py-1 rounded-lg text-xs font-semibold transition-all" aria-pressed="true" title="Tema claro pastel">
+              ☀️ Claro
+            </button>
+            <button type="button" onclick="setTheme('dark')" id="btn-theme-dark" class="px-2.5 py-1 rounded-lg text-xs font-semibold transition-all" aria-pressed="false" title="Tema oscuro">
+              🌙 Oscuro
+            </button>
+            <button type="button" onclick="setTheme('contrast')" id="btn-theme-contrast" class="px-2.5 py-1 rounded-lg text-xs font-semibold transition-all" aria-pressed="false" title="Alto contraste">
+              👁️ Contraste
+            </button>
+          </div>
+
+          <!-- Tamaño de Texto -->
+          <div class="flex items-center rounded-xl p-1 border" style="background-color: var(--bg-card-alt); border-color: var(--border-color);" role="group" aria-label="Tamaño de letra">
+            <button type="button" onclick="setFontSize('normal')" id="btn-font-normal" class="px-2 py-1 rounded-lg text-xs font-bold" aria-pressed="true" title="Texto normal">A</button>
+            <button type="button" onclick="setFontSize('large')" id="btn-font-large" class="px-2 py-1 rounded-lg text-sm font-bold" aria-pressed="false" title="Texto grande">A+</button>
+            <button type="button" onclick="setFontSize('xlarge')" id="btn-font-xlarge" class="px-2 py-1 rounded-lg text-base font-bold" aria-pressed="false" title="Texto muy grande">A++</button>
+          </div>
+
+          <!-- Tipografía Dislexia / Espaciado -->
+          <button type="button" onclick="toggleDyslexia()" id="btn-dyslexia" aria-pressed="false"
+            class="px-2.5 py-1.5 rounded-xl text-xs font-semibold border transition-all flex items-center gap-1"
+            style="background-color: var(--bg-card-alt); border-color: var(--border-color);"
+            title="Activar tipografía y espaciado amigable para lectura">
+            <span>📖</span> <span class="hidden md:inline">Lectura Amigable</span>
+          </button>
+
+          <!-- Modo Lectura Fácil -->
+          <button type="button" onclick="toggleEasyRead()" id="btn-easyread" aria-pressed="false"
+            class="px-2.5 py-1.5 rounded-xl text-xs font-semibold border transition-all flex items-center gap-1"
+            style="background-color: var(--bg-card-alt); border-color: var(--border-color);"
+            title="Alternar entre resumen sencillo y explicación detallada">
+            <span>✨</span> <span class="hidden sm:inline">Lectura Fácil</span>
+          </button>
+
+          <!-- Control Global de Voz (TTS) -->
+          <button type="button" onclick="stopSpeech()" id="btn-stop-tts"
+            class="hidden px-2.5 py-1.5 rounded-xl text-xs font-bold text-white bg-rose-600 hover:bg-rose-700 transition-all items-center gap-1"
+            aria-label="Detener lectura en voz alta">
+            <span>⏹️</span> Detener voz
+          </button>
+        </div>
+      </div>
+
+      <!-- Barra de Progreso e Insignias (Principio 3 DUA: Implicación y Autorregulación) -->
+      <div class="mt-2 pt-2 border-t flex flex-wrap items-center justify-between gap-2 text-xs" style="border-color: var(--border-color);">
+        <div class="flex items-center gap-2 flex-1 min-w-[200px]">
+          <span class="font-semibold whitespace-nowrap" style="color: var(--text-secondary);">Tu progreso:</span>
+          <div class="w-full max-w-xs h-2.5 rounded-full overflow-hidden border" style="background-color: var(--bg-card-alt); border-color: var(--border-color);" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="progress-bar-container">
+            <div id="progress-bar-fill" class="h-full transition-all duration-500 rounded-full" style="width: 0%; background: linear-gradient(90deg, #0D9488, #0284C7);"></div>
+          </div>
+          <span id="progress-text" class="font-bold" style="color: var(--accent-primary);">0%</span>
+        </div>
+
+        <!-- Insignias Desbloqueables -->
+        <div class="flex items-center gap-1.5" aria-label="Insignias de logro">
+          <span id="badge-explorer" class="px-2 py-0.5 rounded-full border opacity-40 transition-all font-medium" style="border-color: var(--border-color);" title="Explora las 11 reglas de Netiqueta">
+            🧭 Explorador (0/11)
+          </span>
+          <span id="badge-debater" class="px-2 py-0.5 rounded-full border opacity-40 transition-all font-medium" style="border-color: var(--border-color);" title="Redacta y verifica un mensaje en el laboratorio de debate">
+            💬 Comunicador Empático
+          </span>
+          <span id="badge-quiz" class="px-2 py-0.5 rounded-full border opacity-40 transition-all font-medium" style="border-color: var(--border-color);" title="Completa las 6 actividades de autoevaluación">
+            🏆 Maestro Netiqueta
+          </span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       CONTENIDO PRINCIPAL
+       ========================================================================== -->
+  <main id="main-content" class="max-w-6xl mx-auto px-4 pt-6 space-y-8">
+
+    <!-- HERO / PORTADA INTERACTIVA -->
+    <section class="dua-card p-6 sm:p-8 relative overflow-hidden" id="section-hero">
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+        <div class="space-y-4 max-w-3xl">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold" style="background-color: var(--mint-soft); color: var(--mint-accent);">
+            <span>🌐 Ciudadanía y Convivencia Digital</span>
+          </div>
+          <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight leading-tight">
+            Netiquetas: El arte de convivir con respeto en el mundo digital
+          </h1>
+          <p class="detailed-text text-base sm:text-lg" style="color: var(--text-secondary);">
+            Aprende qué son las normas de etiqueta en Internet, por qué son indispensables para evitar malentendidos y cómo aplicar las <strong>11 reglas fundamentales</strong> en chats, foros y redes sociales.
+          </p>
+          <p class="easy-text text-base sm:text-lg font-medium" style="color: var(--text-secondary);">
+            Las Netiquetas son reglas de buena educación para hablar y compartir en Internet sin lastimar ni confundir a otras personas.
+          </p>
+
+          <!-- Acciones rápidas -->
+          <div class="flex flex-wrap items-center gap-3 pt-2">
+            <button type="button" onclick="speakElement('section-hero')" class="px-4 py-2.5 rounded-xl text-sm font-bold border flex items-center gap-2 transition-transform active:scale-95" style="background-color: var(--accent-soft); color: var(--accent-primary); border-color: var(--accent-primary);">
+              <span>🔊</span> Escuchar introducción
+            </button>
+            <button type="button" onclick="switchTab('tab-intro')" class="px-4 py-2.5 rounded-xl text-sm font-bold text-white shadow-sm transition-transform active:scale-95" style="background-color: var(--accent-primary);">
+              Comenzar recorrido ↓
+            </button>
+          </div>
+        </div>
+
+        <!-- Ilustración SVG Accesible -->
+        <div class="flex-shrink-0 flex justify-center">
+          <svg class="w-44 h-44 sm:w-52 sm:h-52" viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustración de dos personas comunicándose con empatía y respeto a través de pantallas">
+            <circle cx="110" cy="110" r="98" fill="var(--accent-soft)" stroke="var(--accent-primary)" stroke-width="2" stroke-dasharray="6 6"/>
+            <!-- Burbuja izquierda -->
+            <rect x="30" y="55" width="85" height="52" rx="14" fill="var(--bg-card)" stroke="var(--mint-accent)" stroke-width="3"/>
+            <path d="M52 107L44 120L66 107" fill="var(--bg-card)" stroke="var(--mint-accent)" stroke-width="3" stroke-linejoin="round"/>
+            <circle cx="55" cy="81" r="5" fill="var(--mint-accent)"/>
+            <circle cx="72" cy="81" r="5" fill="var(--mint-accent)"/>
+            <circle cx="89" cy="81" r="5" fill="var(--mint-accent)"/>
+            <!-- Burbuja derecha -->
+            <rect x="105" y="112" width="85" height="52" rx="14" fill="var(--bg-card)" stroke="var(--accent-primary)" stroke-width="3"/>
+            <path d="M168 164L176 177L154 164" fill="var(--bg-card)" stroke="var(--accent-primary)" stroke-width="3" stroke-linejoin="round"/>
+            <!-- Corazón de empatía -->
+            <path d="M147.5 148C147.5 148 134 139.5 134 131.5C134 127.5 137.2 124.5 141 124.5C143.5 124.5 145.8 125.9 147.5 128C149.2 125.9 151.5 124.5 154 124.5C157.8 124.5 161 127.5 161 131.5C161 139.5 147.5 148 147.5 148Z" fill="#F43F5E"/>
+            <!-- Estrellas de respeto -->
+            <path d="M165 52L168 60L176 63L168 66L165 74L162 66L154 63L162 60L165 52Z" fill="#F59E0B"/>
+            <path d="M52 145L54 150L59 152L54 154L52 159L50 154L45 152L50 150L52 145Z" fill="#0D9488"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         NAVEGACIÓN POR MÓDULOS (PRINCIPIO 2 DUA: MÚLTIPLES FORMAS DE ACCIÓN)
+         ========================================================================== -->
+    <nav aria-label="Módulos de aprendizaje" class="dua-card p-2">
+      <div role="tablist" class="grid grid-cols-2 lg:grid-cols-4 gap-2">
+        <button type="button" role="tab" id="tab-btn-intro" aria-selected="true" aria-controls="panel-intro" onclick="switchTab('tab-intro')"
+          class="tab-btn px-4 py-3 rounded-xl font-bold text-sm sm:text-base flex items-center justify-center gap-2 transition-all">
+          <span>📘</span> 1. ¿Qué es y para qué sirve?
+        </button>
+        <button type="button" role="tab" id="tab-btn-rules" aria-selected="false" aria-controls="panel-rules" onclick="switchTab('tab-rules')"
+          class="tab-btn px-4 py-3 rounded-xl font-bold text-sm sm:text-base flex items-center justify-center gap-2 transition-all">
+          <span>🛡️</span> 2. Las 11 Reglas
+        </button>
+        <button type="button" role="tab" id="tab-btn-debate" aria-selected="false" aria-controls="panel-debate" onclick="switchTab('tab-debate')"
+          class="tab-btn px-4 py-3 rounded-xl font-bold text-sm sm:text-base flex items-center justify-center gap-2 transition-all">
+          <span>💬</span> 3. Debate y Laboratorio
+        </button>
+        <button type="button" role="tab" id="tab-btn-quiz" aria-selected="false" aria-controls="panel-quiz" onclick="switchTab('tab-quiz')"
+          class="tab-btn px-4 py-3 rounded-xl font-bold text-sm sm:text-base flex items-center justify-center gap-2 transition-all">
+          <span>🎯</span> 4. Autoevaluación (6 Tipos)
+        </button>
+      </div>
+    </nav>
+
+    <!-- ==========================================================================
+         MÓDULO 1: ¿QUÉ ES LA NETIQUETA Y PARA QUÉ SIRVE?
+         ========================================================================== -->
+    <section id="panel-intro" role="tabpanel" aria-labelledby="tab-btn-intro" class="space-y-6 animate-fade-in">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <!-- Tarjeta: ¿Qué es la Netiqueta? -->
+        <article class="dua-card p-6 flex flex-col justify-between space-y-4" id="card-what-is">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between gap-2">
+              <span class="px-3 py-1 rounded-lg text-xs font-extrabold uppercase tracking-wider" style="background-color: var(--accent-soft); color: var(--accent-primary);">Definición y Origen</span>
+              <button type="button" onclick="speakElement('card-what-is')" class="p-2 rounded-lg border text-xs font-semibold hover:opacity-80" style="border-color: var(--border-color);" aria-label="Escuchar sección Qué es la Netiqueta">
+                🔊 Escuchar
+              </button>
+            </div>
+            <h2 class="text-xl sm:text-2xl font-extrabold">¿Qué es la Netiqueta?</h2>
+            <p class="detailed-text" style="color: var(--text-secondary);">
+              La palabra <strong>Netiqueta</strong> (del inglés <em>netiquette</em>, unión de <em>net</em> —red— y <em>etiquette</em> —etiqueta—) es el conjunto de <strong>normas de comportamiento general y buena educación en Internet</strong>.
+            </p>
+            <p class="detailed-text" style="color: var(--text-secondary);">
+              Aunque existen distintas adaptaciones institucionales, su base moderna fue sistematizada en 1994 por <strong>Virginia Shea</strong> en su famoso libro y decálogo sobre las reglas básicas de convivencia en el ciberespacio.
+            </p>
+            <p class="easy-text font-medium" style="color: var(--text-secondary);">
+              <strong>Netiqueta</strong> significa "buena educación en Internet". Fue creada por Virginia Shea para ayudarnos a tratarnos con respeto cuando usamos computadoras o celulares.
+            </p>
+          </div>
+          <div class="dua-card-alt p-4 flex items-center gap-3">
+            <span class="text-2xl" aria-hidden="true">💡</span>
+            <p class="text-sm font-medium" style="color: var(--text-secondary);">
+              <strong>Idea clave:</strong> Así como saludamos o pedimos permiso en el aula o en la calle, la netiqueta adapta la cortesía humana al mundo digital.
+            </p>
+          </div>
+        </article>
+
+        <!-- Tarjeta: ¿Para qué sirve? -->
+        <article class="dua-card p-6 flex flex-col justify-between space-y-4" id="card-purpose">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between gap-2">
+              <span class="px-3 py-1 rounded-lg text-xs font-extrabold uppercase tracking-wider" style="background-color: var(--mint-soft); color: var(--mint-accent);">Propósito e Importancia</span>
+              <button type="button" onclick="speakElement('card-purpose')" class="p-2 rounded-lg border text-xs font-semibold hover:opacity-80" style="border-color: var(--border-color);" aria-label="Escuchar sección Para qué sirve">
+                🔊 Escuchar
+              </button>
+            </div>
+            <h2 class="text-xl sm:text-2xl font-extrabold">¿Para qué sirve?</h2>
+            <p class="detailed-text" style="color: var(--text-secondary);">
+              En la comunicación escrita perdemos el <strong>tono de voz, los gestos faciales y el lenguaje corporal</strong>. Sin estas pistas, una frase neutra puede parecer agresiva o irónica. La netiqueta sirve para:
+            </p>
+            <p class="easy-text font-medium" style="color: var(--text-secondary);">
+              Cuando escribimos mensajes, la otra persona no ve nuestra cara ni escucha nuestra voz. La netiqueta sirve para:
+            </p>
+            <ul class="space-y-2.5 text-sm sm:text-base" style="color: var(--text-secondary);">
+              <li class="flex items-start gap-2.5">
+                <span class="font-bold text-emerald-600 mt-0.5">✔</span>
+                <span><strong>Prevenir malentendidos:</strong> Aporta claridad y empatía cuando falta el contacto cara a cara.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="font-bold text-emerald-600 mt-0.5">✔</span>
+                <span><strong>Fomentar el respeto mutuo:</strong> Evita conflictos, insultos (<em>flaming</em>) y acoso digital.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="font-bold text-emerald-600 mt-0.5">✔</span>
+                <span><strong>Proteger la privacidad:</strong> Cuida nuestros datos personales y los de otras personas.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="font-bold text-emerald-600 mt-0.5">✔</span>
+                <span><strong>Construir comunidades seguras:</strong> Permite aprender, debatir y colaborar en armonía.</span>
+              </li>
+            </ul>
+          </div>
+        </article>
+      </div>
+
+      <!-- Comparador Interactivo DUA: Comunicación sin Netiqueta vs. con Netiqueta -->
+      <div class="dua-card p-6 space-y-4">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <div>
+            <h3 class="text-lg sm:text-xl font-bold">🔍 Ejemplo visual: ¿Cómo cambia un mismo mensaje?</h3>
+            <p class="text-sm" style="color: var(--text-muted);">Alterna entre ambos escenarios para observar el impacto del tono digital.</p>
+          </div>
+          <div class="flex rounded-xl p-1 border" style="background-color: var(--bg-card-alt); border-color: var(--border-color);">
+            <button type="button" onclick="toggleScenario('bad')" id="btn-scen-bad" class="px-3 py-1.5 rounded-lg text-xs font-bold transition-all" style="background-color: var(--danger-bg); color: var(--danger-text);">
+              ❌ Sin Netiqueta
+            </button>
+            <button type="button" onclick="toggleScenario('good')" id="btn-scen-good" class="px-3 py-1.5 rounded-lg text-xs font-bold transition-all">
+              ✅ Con Netiqueta
+            </button>
+          </div>
+        </div>
+
+        <div id="scenario-box" class="p-4 sm:p-5 rounded-xl border transition-all" style="background-color: var(--danger-bg); border-color: var(--danger-border); color: var(--danger-text);">
+          <p class="font-mono text-sm sm:text-base font-bold mb-2">"MANDAME EL TRABAJO YA PORQ NO ENTIENDO NADA Y ES PARA HOY!!!"</p>
+          <p class="text-xs sm:text-sm"><strong>¿Qué percibe quien lo lee?</strong> Parece que le están gritando, exige atención inmediata sin saludar, tiene faltas ortográficas y no demuestra empatía por el tiempo del compañero.</p>
+        </div>
+      </div>
+
+      <div class="flex justify-end">
+        <button type="button" onclick="switchTab('tab-rules')" class="px-5 py-3 rounded-xl font-bold text-white shadow-sm flex items-center gap-2" style="background-color: var(--accent-primary);">
+          Continuar a las 11 Reglas <span>→</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         MÓDULO 2: LAS 11 REGLAS FUNDAMENTALES DE NETIQUETA
+         ========================================================================== -->
+    <section id="panel-rules" role="tabpanel" aria-labelledby="tab-btn-rules" class="hidden space-y-6 animate-fade-in">
+      
+      <!-- Filtros y Buscador DUA (Múltiples medios de acceso a la información) -->
+      <div class="dua-card p-5 space-y-4">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <h2 class="text-xl sm:text-2xl font-extrabold">Las 11 Reglas Fundamentales de la Netiqueta</h2>
+            <p class="text-sm" style="color: var(--text-secondary);">Haz clic en cada tarjeta para ver ejemplos prácticos de <strong>qué hacer</strong> y <strong>qué evitar</strong>, o escúchala en voz alta.</p>
+          </div>
+
+          <!-- Filtros de categoría -->
+          <div class="flex flex-wrap gap-2" role="group" aria-label="Filtrar reglas por categoría">
+            <button type="button" onclick="filterRules('all')" id="filter-all" class="px-3 py-1.5 rounded-xl text-xs font-bold border transition-all" style="background-color: var(--accent-primary); color: #fff; border-color: var(--accent-primary);">
+              Todas (11)
+            </button>
+            <button type="button" onclick="filterRules('basic')" id="filter-basic" class="px-3 py-1.5 rounded-xl text-xs font-bold border transition-all" style="background-color: var(--bg-card-alt); border-color: var(--border-color);">
+              8 Básicas
+            </button>
+            <button type="button" onclick="filterRules('advanced')" id="filter-advanced" class="px-3 py-1.5 rounded-xl text-xs font-bold border transition-all" style="background-color: var(--bg-card-alt); border-color: var(--border-color);">
+              3 Convivencia Avanzada
+            </button>
+          </div>
+        </div>
+
+        <!-- Barra de búsqueda rápida -->
+        <div class="relative">
+          <label for="rule-search" class="sr-only">Buscar regla por palabra clave</label>
+          <input type="search" id="rule-search" oninput="searchRules(this.value)" placeholder="Buscar regla (ej: mayúsculas, privacidad, flaming, ortografía...)"
+            class="w-full px-4 py-2.5 rounded-xl border text-sm"
+            style="background-color: var(--bg-card-alt); border-color: var(--border-color); color: var(--text-primary);">
+        </div>
+      </div>
+
+      <!-- Contenedor Dinámico de las 11 Reglas -->
+      <div id="rules-grid" class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <!-- Se puebla dinámicamente desde JS con accesibilidad completa -->
+      </div>
+
+      <div class="flex justify-between items-center pt-2">
+        <button type="button" onclick="switchTab('tab-intro')" class="px-4 py-2.5 rounded-xl font-semibold border text-sm" style="border-color: var(--border-color);">
+          ← Volver a Introducción
+        </button>
+        <button type="button" onclick="switchTab('tab-debate')" class="px-5 py-3 rounded-xl font-bold text-white shadow-sm text-sm" style="background-color: var(--accent-primary);">
+          Ir al Debate y Laboratorio →
+        </button>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         MÓDULO 3: DEBATE, REFLEXIÓN Y LABORATORIO ANALIZADOR EN VIVO
+         ========================================================================== -->
+    <section id="panel-debate" role="tabpanel" aria-labelledby="tab-btn-debate" class="hidden space-y-6 animate-fade-in">
+      
+      <!-- Preguntas Disparadoras de Debate -->
+      <div class="dua-card p-6 space-y-5" id="debate-prompts-card">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <div>
+            <span class="px-3 py-1 rounded-lg text-xs font-extrabold uppercase" style="background-color: var(--mint-soft); color: var(--mint-accent);">Foro de Reflexión</span>
+            <h2 class="text-xl sm:text-2xl font-extrabold mt-1">¿Vivimos las normas de convivencia en la red?</h2>
+          </div>
+          <button type="button" onclick="speakElement('debate-prompts-card')" class="px-3 py-2 rounded-xl border text-xs font-bold" style="border-color: var(--border-color);">
+            🔊 Escuchar preguntas
+          </button>
+        </div>
+
+        <p class="text-sm sm:text-base" style="color: var(--text-secondary);">
+          Elige una de estas tres preguntas disparadoras para reflexionar y redactar tu participación en el laboratorio de abajo:
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <button type="button" onclick="selectDebatePrompt(1)" id="prompt-card-1" class="dua-card-alt p-4 text-left space-y-2 border-2 transition-all hover:border-sky-500">
+            <span class="text-xs font-extrabold px-2 py-0.5 rounded bg-sky-100 text-sky-800">1. El impacto del tono</span>
+            <p class="text-sm font-semibold">En un mensaje escrito perdemos los gestos y la entonación. ¿Alguna vez malinterpretaste un mensaje y terminaste en un malentendido? ¿Cómo podemos evitarlo?</p>
+          </button>
+
+          <button type="button" onclick="selectDebatePrompt(2)" id="prompt-card-2" class="dua-card-alt p-4 text-left space-y-2 border-2 transition-all hover:border-teal-500">
+            <span class="text-xs font-extrabold px-2 py-0.5 rounded bg-teal-100 text-teal-800">2. Límites y poder digital</span>
+            <p class="text-sm font-semibold">¿Has presenciado situaciones donde administradores o personas con más conocimientos técnicos avasallen o excluyan a otros? ¿Dónde está el límite entre broma y acoso?</p>
+          </button>
+
+          <button type="button" onclick="selectDebatePrompt(3)" id="prompt-card-3" class="dua-card-alt p-4 text-left space-y-2 border-2 transition-all hover:border-amber-500">
+            <span class="text-xs font-extrabold px-2 py-0.5 rounded bg-amber-100 text-amber-800">3. Derecho a la desconexión</span>
+            <p class="text-sm font-semibold">Vivimos hiperconectados, pero exigir respuestas inmediatas fuera de hora genera presión. ¿Qué tan respetuosos somos con los tiempos de descanso de compañeros y docentes?</p>
+          </button>
+        </div>
+      </div>
+
+      <!-- Laboratorio Interactivo de Redacción con Detector de Netiqueta en Vivo -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div class="lg:col-span-2 dua-card p-6 space-y-4">
+          <div class="flex items-center justify-between">
+            <h3 class="text-lg sm:text-xl font-extrabold">✍️ Laboratorio de Redacción Empática</h3>
+            <span id="selected-prompt-badge" class="text-xs font-bold px-2.5 py-1 rounded-lg" style="background-color: var(--accent-soft); color: var(--accent-primary);">
+              Tema libre / General
+            </span>
+          </div>
+
+          <label for="debate-textarea" class="block text-sm font-medium" style="color: var(--text-secondary);">
+            Redacta tu aporte para el foro (comparte una experiencia o responde a una pregunta disparadora):
+          </label>
+          <textarea id="debate-textarea" rows="5" oninput="analyzeMessageLive()"
+            placeholder="Ejemplo: Hola compañeros, respecto al impacto del tono en los mensajes, una vez me pasó que..."
+            class="w-full p-4 rounded-xl border text-base transition-all"
+            style="background-color: var(--bg-card-alt); border-color: var(--border-color); color: var(--text-primary);"></textarea>
+
+          <!-- Botones de acción (Principio 2 DUA: Múltiples medios de expresión) -->
+          <div class="flex flex-wrap items-center justify-between gap-3">
+            <div class="flex flex-wrap gap-2">
+              <button type="button" onclick="simulatePost()" class="px-4 py-2.5 rounded-xl font-bold text-sm text-white shadow-sm transition-transform active:scale-95" style="background-color: var(--mint-accent);">
+                📤 Simular publicación en foro
+              </button>
+              <button type="button" onclick="copyDebateMessage()" class="px-4 py-2.5 rounded-xl font-bold text-sm border transition-all" style="border-color: var(--border-color);">
+                📋 Copiar para CREA
+              </button>
+            </div>
+            <span id="char-counter" class="text-xs font-semibold" style="color: var(--text-muted);">0 caracteres</span>
+          </div>
+
+          <!-- Notificación no intrusiva (nunca alert) -->
+          <div id="debate-feedback-banner" class="hidden p-3 rounded-xl text-sm font-semibold border" role="status" aria-live="polite"></div>
+
+          <!-- Vista previa de publicación simulada -->
+          <div id="simulated-forum-container" class="hidden space-y-3 pt-3 border-t" style="border-color: var(--border-color);">
+            <h4 class="text-sm font-bold uppercase tracking-wider" style="color: var(--text-muted);">Vista previa en el Foro del Curso:</h4>
+            <div id="simulated-forum-posts" class="space-y-3"></div>
+          </div>
+        </div>
+
+        <!-- Analizador de Netiqueta en Tiempo Real (Andamiaje DUA) -->
+        <aside class="dua-card p-6 space-y-4" aria-label="Analizador automático de Netiqueta">
+          <h3 class="text-lg font-extrabold flex items-center gap-2">
+            <span>🤖</span> Detector de Netiqueta
+          </h3>
+          <p class="text-xs" style="color: var(--text-muted);">
+            Este asistente analiza tu texto en tiempo real para ayudarte a cumplir las normas antes de publicar:
+          </p>
+
+          <ul class="space-y-3 text-sm" id="live-checklist">
+            <li id="chk-caps" class="p-3 rounded-xl border flex items-start gap-2.5 transition-all" style="background-color: var(--bg-card-alt); border-color: var(--border-color);">
+              <span class="text-base" id="icon-caps">⚪</span>
+              <div>
+                <strong class="block text-xs uppercase">Uso de Mayúsculas (Regla 2)</strong>
+                <span class="text-xs" id="desc-caps" style="color: var(--text-secondary);">Escribe tu mensaje para verificar que no parezca un grito.</span>
+              </div>
+            </li>
+
+            <li id="chk-greeting" class="p-3 rounded-xl border flex items-start gap-2.5 transition-all" style="background-color: var(--bg-card-alt); border-color: var(--border-color);">
+              <span class="text-base" id="icon-greeting">⚪</span>
+              <div>
+                <strong class="block text-xs uppercase">Empatía y Cortesía (Regla 1)</strong>
+                <span class="text-xs" id="desc-greeting" style="color: var(--text-secondary);">Incluir un saludo o trato amable humaniza el mensaje.</span>
+              </div>
+            </li>
+
+            <li id="chk-length" class="p-3 rounded-xl border flex items-start gap-2.5 transition-all" style="background-color: var(--bg-card-alt); border-color: var(--border-color);">
+              <span class="text-base" id="icon-length">⚪</span>
+              <div>
+                <strong class="block text-xs uppercase">Profundidad y Claridad (Reglas 3 y 4)</strong>
+                <span class="text-xs" id="desc-length" style="color: var(--text-secondary);">Argumenta tu idea con claridad (mínimo 40 caracteres).</span>
+              </div>
+            </li>
+
+            <li id="chk-respect" class="p-3 rounded-xl border flex items-start gap-2.5 transition-all" style="background-color: var(--bg-card-alt); border-color: var(--border-color);">
+              <span class="text-base" id="icon-respect">⚪</span>
+              <div>
+                <strong class="block text-xs uppercase">Control de Controversias (Regla 11)</strong>
+                <span class="text-xs" id="desc-respect" style="color: var(--text-secondary);">Sin palabras ofensivas ni signos de exclamación agresivos (!!!).</span>
+              </div>
+            </li>
+          </ul>
+        </aside>
+      </div>
+
+      <div class="flex justify-between items-center pt-2">
+        <button type="button" onclick="switchTab('tab-rules')" class="px-4 py-2.5 rounded-xl font-semibold border text-sm" style="border-color: var(--border-color);">
+          ← Volver a Reglas
+        </button>
+        <button type="button" onclick="switchTab('tab-quiz')" class="px-5 py-3 rounded-xl font-bold text-white shadow-sm text-sm" style="background-color: var(--accent-primary);">
+          Ir a la Autoevaluación →
+        </button>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         MÓDULO 4: AUTOEVALUACIÓN DINÁMICA (LOS 6 TIPOS DE PREGUNTAS DE CREA)
+         ========================================================================== -->
+    <section id="panel-quiz" role="tabpanel" aria-labelledby="tab-btn-quiz" class="hidden space-y-6 animate-fade-in">
+      
+      <div class="dua-card p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <span class="px-3 py-1 rounded-lg text-xs font-extrabold uppercase" style="background-color: var(--accent-soft); color: var(--accent-primary);">Práctica Interactiva</span>
+          <h2 class="text-xl sm:text-2xl font-extrabold mt-1">Autoevaluación: 6 Formatos de Aprendizaje</h2>
+          <p class="text-sm" style="color: var(--text-secondary);">Pon a prueba lo aprendido con los 6 tipos de ítems trabajados. Cada ejercicio ofrece pistas y retroalimentación inmediata.</p>
+        </div>
+        <div class="dua-card-alt px-4 py-3 text-center">
+          <span class="text-xs font-bold uppercase block" style="color: var(--text-muted);">Actividades logradas</span>
+          <span id="quiz-score-display" class="text-2xl font-extrabold" style="color: var(--accent-primary);">0 / 6</span>
+        </div>
+      </div>
+
+      <!-- PREGUNTA 1: VERDADERO / FALSO -->
+      <article class="dua-card p-6 space-y-4" id="q1-card">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <span class="px-2.5 py-1 rounded-lg text-xs font-extrabold" style="background-color: var(--mint-soft); color: var(--mint-accent);">1. Verdadero / Falso</span>
+          <button type="button" onclick="speakElement('q1-card')" class="text-xs font-semibold px-2.5 py-1 rounded-lg border" style="border-color: var(--border-color);">🔊 Escuchar</button>
+        </div>
+        <p class="font-bold text-base sm:text-lg">
+          "Escribir un mensaje utilizando únicamente letras mayúsculas en un foro académico o chat grupal es recomendable cuando queremos destacar una idea importante, ya que facilita la lectura rápida."
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <button type="button" onclick="checkQ1(true)" id="q1-btn-true" class="px-5 py-2.5 rounded-xl font-bold border transition-all">Verdadero</button>
+          <button type="button" onclick="checkQ1(false)" id="q1-btn-false" class="px-5 py-2.5 rounded-xl font-bold border transition-all">Falso</button>
+        </div>
+        <div id="q1-feedback" class="hidden p-4 rounded-xl text-sm border" role="status" aria-live="polite"></div>
+      </article>
+
+      <!-- PREGUNTA 2: OPCIÓN MÚLTIPLE -->
+      <article class="dua-card p-6 space-y-4" id="q2-card">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <span class="px-2.5 py-1 rounded-lg text-xs font-extrabold" style="background-color: var(--accent-soft); color: var(--accent-primary);">2. Opción Múltiple</span>
+          <button type="button" onclick="speakElement('q2-card')" class="text-xs font-semibold px-2.5 py-1 rounded-lg border" style="border-color: var(--border-color);">🔊 Escuchar</button>
+        </div>
+        <p class="font-bold text-base sm:text-lg">
+          Estás participando en un debate virtual y notas que un compañero cometió un error ortográfico evidente. Según las normas básicas de netiqueta, ¿cuál es la acción más adecuada?
+        </p>
+        <div class="space-y-2.5" role="radiogroup" aria-label="Opciones de respuesta para pregunta 2">
+          <button type="button" onclick="checkQ2(0)" class="q2-opt w-full text-left p-3.5 rounded-xl border font-medium text-sm sm:text-base transition-all hover:border-sky-500">
+            <strong>a)</strong> Citar su mensaje en el foro público señalando el error para que el resto del grupo no lo repita.
+          </button>
+          <button type="button" onclick="checkQ2(1)" class="q2-opt w-full text-left p-3.5 rounded-xl border font-medium text-sm sm:text-base transition-all hover:border-sky-500">
+            <strong>b)</strong> Corregirlo con amabilidad y, de preferencia, mediante un mensaje privado para evitar humillarlo en público.
+          </button>
+          <button type="button" onclick="checkQ2(2)" class="q2-opt w-full text-left p-3.5 rounded-xl border font-medium text-sm sm:text-base transition-all hover:border-sky-500">
+            <strong>c)</strong> Ignorar su aporte y pedirle al administrador que elimine la publicación.
+          </button>
+          <button type="button" onclick="checkQ2(3)" class="q2-opt w-full text-left p-3.5 rounded-xl border font-medium text-sm sm:text-base transition-all hover:border-sky-500">
+            <strong>d)</strong> Responderle utilizando mayúsculas para remarcar cómo se escribe correctamente la palabra.
+          </button>
+        </div>
+        <div id="q2-feedback" class="hidden p-4 rounded-xl text-sm border" role="status" aria-live="polite"></div>
+      </article>
+
+      <!-- PREGUNTA 3: ORDENAMIENTO ACCESIBLE (BOTONES SUBIR/BAJAR PARA TECLADO Y TÁCTIL) -->
+      <article class="dua-card p-6 space-y-4" id="q3-card">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <span class="px-2.5 py-1 rounded-lg text-xs font-extrabold" style="background-color: var(--mint-soft); color: var(--mint-accent);">3. Ordenamiento Secuencial</span>
+          <button type="button" onclick="speakElement('q3-card')" class="text-xs font-semibold px-2.5 py-1 rounded-lg border" style="border-color: var(--border-color);">🔊 Escuchar</button>
+        </div>
+        <p class="font-bold text-base sm:text-lg">
+          Ordena cronológicamente los 4 pasos recomendados por la netiqueta al ingresar y participar por primera vez en una comunidad o foro digital (usa las flechas ↑ ↓ para mover cada paso):
+        </p>
+
+        <ul id="q3-list" class="space-y-2.5" aria-label="Lista de pasos para ordenar">
+          <!-- Renderizado dinámicamente por JS -->
+        </ul>
+
+        <div class="flex flex-wrap gap-3 pt-1">
+          <button type="button" onclick="checkQ3()" class="px-4 py-2.5 rounded-xl font-bold text-sm text-white" style="background-color: var(--accent-primary);">
+            Verificar orden
+          </button>
+          <button type="button" onclick="toggleHint('q3-hint')" class="px-3 py-2.5 rounded-xl font-semibold text-xs border" style="border-color: var(--border-color);">
+            💡 Ver pista
+          </button>
+        </div>
+        <div id="q3-hint" class="hidden p-3 rounded-xl text-xs border" style="background-color: var(--warning-bg); border-color: var(--warning-border); color: var(--warning-text);">
+          <strong>Pista:</strong> Antes de escribir (pasos 2 y 3), siempre conviene observar cómo funciona el espacio (Regla 10). Publicar y debatir es el paso final.
+        </div>
+        <div id="q3-feedback" class="hidden p-4 rounded-xl text-sm border" role="status" aria-live="polite"></div>
+      </article>
+
+      <!-- PREGUNTA 4: PREGUNTA ABIERTA + RÚBRICA DE AUTOEVALUACIÓN (METACOGNICIÓN DUA) -->
+      <article class="dua-card p-6 space-y-4" id="q4-card">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <span class="px-2.5 py-1 rounded-lg text-xs font-extrabold" style="background-color: var(--accent-soft); color: var(--accent-primary);">4. Respuesta Abierta + Rúbrica DUA</span>
+          <button type="button" onclick="speakElement('q4-card')" class="text-xs font-semibold px-2.5 py-1 rounded-lg border" style="border-color: var(--border-color);">🔊 Escuchar</button>
+        </div>
+        <p class="font-bold text-base sm:text-lg">
+          Explica con tus propias palabras qué significa la regla <em>"Recordar que al otro lado hay un ser humano"</em> y menciona una estrategia concreta para evitar malentendidos al comunicarnos por texto.
+        </p>
+
+        <label for="q4-input" class="sr-only">Escribe tu respuesta abierta aquí</label>
+        <textarea id="q4-input" rows="3" placeholder="Escribe aquí tu reflexión..."
+          class="w-full p-3.5 rounded-xl border text-sm sm:text-base"
+          style="background-color: var(--bg-card-alt); border-color: var(--border-color); color: var(--text-primary);"></textarea>
+
+        <!-- Rúbrica interactiva simplificada basada en los 3 criterios creados -->
+        <div class="dua-card-alt p-4 space-y-3">
+          <p class="text-xs font-extrabold uppercase tracking-wider" style="color: var(--text-muted);">
+            📋 Autoevalúa tu respuesta con la Rúbrica del Foro (marca lo que cumpliste):
+          </p>
+          <label class="flex items-start gap-2.5 text-sm cursor-pointer">
+            <input type="checkbox" id="rubric-1" class="mt-1 w-4 h-4 rounded">
+            <span><strong>Aplicación de la Netiqueta:</strong> Escribí con respeto, buena ortografía y sin abusar de mayúsculas.</span>
+          </label>
+          <label class="flex items-start gap-2.5 text-sm cursor-pointer">
+            <input type="checkbox" id="rubric-2" class="mt-1 w-4 h-4 rounded">
+            <span><strong>Profundidad del aporte:</strong> Expliqué la falta de tono/gestos en los textos y propuse un ejemplo o estrategia concreta.</span>
+          </label>
+          <label class="flex items-start gap-2.5 text-sm cursor-pointer">
+            <input type="checkbox" id="rubric-3" class="mt-1 w-4 h-4 rounded">
+            <span><strong>Empatía comunicativa:</strong> Mi redacción es clara para que cualquier compañero la comprenda fácilmente.</span>
+          </label>
+        </div>
+
+        <button type="button" onclick="checkQ4()" class="px-4 py-2.5 rounded-xl font-bold text-sm text-white" style="background-color: var(--accent-primary);">
+          Registrar autoevaluación
+        </button>
+        <div id="q4-feedback" class="hidden p-4 rounded-xl text-sm border" role="status" aria-live="polite"></div>
+      </article>
+
+      <!-- PREGUNTA 5: COMPLETAR ESPACIOS EN BLANCO -->
+      <article class="dua-card p-6 space-y-4" id="q5-card">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <span class="px-2.5 py-1 rounded-lg text-xs font-extrabold" style="background-color: var(--mint-soft); color: var(--mint-accent);">5. Completar Espacios en Blanco</span>
+          <button type="button" onclick="speakElement('q5-card')" class="text-xs font-semibold px-2.5 py-1 rounded-lg border" style="border-color: var(--border-color);">🔊 Escuchar</button>
+        </div>
+        <p class="font-bold text-base sm:text-lg">Completa los dos conceptos clave en el siguiente párrafo:</p>
+
+        <div class="dua-card-alt p-4 sm:p-5 text-base sm:text-lg leading-relaxed">
+          "Al participar en debates virtuales, debemos ayudar a mantener las controversias bajo control evitando el
+          <label for="blank-1" class="sr-only">Primer espacio en blanco</label>
+          <input type="text" id="blank-1" placeholder="palabra 1..." class="mx-1 px-3 py-1 rounded-lg border font-bold w-36 text-center" style="background-color: var(--bg-card); border-color: var(--accent-primary); color: var(--text-primary);">
+          , es decir, caer en insultos o ataques personales. Además, si contamos con permisos de administrador o mayores conocimientos técnicos, nunca debemos usarlos para
+          <label for="blank-2" class="sr-only">Segundo espacio en blanco</label>
+          <input type="text" id="blank-2" placeholder="palabra 2..." class="mx-1 px-3 py-1 rounded-lg border font-bold w-40 text-center" style="background-color: var(--bg-card); border-color: var(--accent-primary); color: var(--text-primary);">
+          o avasallar a otros usuarios."
+        </div>
+
+        <div class="flex flex-wrap gap-3">
+          <button type="button" onclick="checkQ5()" class="px-4 py-2.5 rounded-xl font-bold text-sm text-white" style="background-color: var(--accent-primary);">
+            Comprobar palabras
+          </button>
+          <button type="button" onclick="toggleHint('q5-hint')" class="px-3 py-2.5 rounded-xl font-semibold text-xs border" style="border-color: var(--border-color);">
+            💡 Ver banco de ayuda
+          </button>
+        </div>
+        <div id="q5-hint" class="hidden p-3 rounded-xl text-xs border" style="background-color: var(--warning-bg); border-color: var(--warning-border); color: var(--warning-text);">
+          <strong>Palabras posibles:</strong> <em>flaming</em> (discusión hostil) y <em>amedrentar</em> o <em>espiar</em>.
+        </div>
+        <div id="q5-feedback" class="hidden p-4 rounded-xl text-sm border" role="status" aria-live="polite"></div>
+      </article>
+
+      <!-- PREGUNTA 6: CORRESPONDENCIA (EMPAREJAMIENTO ACCESIBLE) -->
+      <article class="dua-card p-6 space-y-4" id="q6-card">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <span class="px-2.5 py-1 rounded-lg text-xs font-extrabold" style="background-color: var(--accent-soft); color: var(--accent-primary);">6. Correspondencia (Emparejamiento)</span>
+          <button type="button" onclick="speakElement('q6-card')" class="text-xs font-semibold px-2.5 py-1 rounded-lg border" style="border-color: var(--border-color);">🔊 Escuchar</button>
+        </div>
+        <p class="font-bold text-base sm:text-lg">
+          Relaciona cada regla de netiqueta de la izquierda seleccionando su conducta práctica correspondiente en el menú desplegable de la derecha:
+        </p>
+
+        <div class="space-y-3">
+          <div class="dua-card-alt p-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <label for="match-1" class="font-bold text-sm sm:text-base">1. Respetar el tiempo ajeno</label>
+            <select id="match-1" class="p-2.5 rounded-xl border text-sm sm:max-w-md w-full" style="background-color: var(--bg-card); border-color: var(--border-color); color: var(--text-primary);">
+              <option value="">-- Selecciona una conducta --</option>
+              <option value="privacy">Pedir consentimiento explícito antes de difundir fotos o chats de terceros.</option>
+              <option value="time">Evitar enviar cadenas innecesarias o exigir respuestas inmediatas fuera de hora.</option>
+              <option value="share">Aportar soluciones y responder dudas de otros usuarios de forma desinteresada.</option>
+              <option value="real">Actuar con la misma ética y respeto que en una conversación cara a cara.</option>
+            </select>
+          </div>
+
+          <div class="dua-card-alt p-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <label for="match-2" class="font-bold text-sm sm:text-base">2. Compartir el conocimiento</label>
+            <select id="match-2" class="p-2.5 rounded-xl border text-sm sm:max-w-md w-full" style="background-color: var(--bg-card); border-color: var(--border-color); color: var(--text-primary);">
+              <option value="">-- Selecciona una conducta --</option>
+              <option value="privacy">Pedir consentimiento explícito antes de difundir fotos o chats de terceros.</option>
+              <option value="time">Evitar enviar cadenas innecesarias o exigir respuestas inmediatas fuera de hora.</option>
+              <option value="share">Aportar soluciones y responder dudas de otros usuarios de forma desinteresada.</option>
+              <option value="real">Actuar con la misma ética y respeto que en una conversación cara a cara.</option>
+            </select>
+          </div>
+
+          <div class="dua-card-alt p-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <label for="match-3" class="font-bold text-sm sm:text-base">3. Cuidar la privacidad</label>
+            <select id="match-3" class="p-2.5 rounded-xl border text-sm sm:max-w-md w-full" style="background-color: var(--bg-card); border-color: var(--border-color); color: var(--text-primary);">
+              <option value="">-- Selecciona una conducta --</option>
+              <option value="privacy">Pedir consentimiento explícito antes de difundir fotos o chats de terceros.</option>
+              <option value="time">Evitar enviar cadenas innecesarias o exigir respuestas inmediatas fuera de hora.</option>
+              <option value="share">Aportar soluciones y responder dudas de otros usuarios de forma desinteresada.</option>
+              <option value="real">Actuar con la misma ética y respeto que en una conversación cara a cara.</option>
+            </select>
+          </div>
+
+          <div class="dua-card-alt p-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <label for="match-4" class="font-bold text-sm sm:text-base">4. Mantener estándares reales en línea</label>
+            <select id="match-4" class="p-2.5 rounded-xl border text-sm sm:max-w-md w-full" style="background-color: var(--bg-card); border-color: var(--border-color); color: var(--text-primary);">
+              <option value="">-- Selecciona una conducta --</option>
+              <option value="privacy">Pedir consentimiento explícito antes de difundir fotos o chats de terceros.</option>
+              <option value="time">Evitar enviar cadenas innecesarias o exigir respuestas inmediatas fuera de hora.</option>
+              <option value="share">Aportar soluciones y responder dudas de otros usuarios de forma desinteresada.</option>
+              <option value="real">Actuar con la misma ética y respeto que en una conversación cara a cara.</option>
+            </select>
+          </div>
+        </div>
+
+        <button type="button" onclick="checkQ6()" class="px-4 py-2.5 rounded-xl font-bold text-sm text-white" style="background-color: var(--accent-primary);">
+          Comprobar correspondencias
+        </button>
+        <div id="q6-feedback" class="hidden p-4 rounded-xl text-sm border" role="status" aria-live="polite"></div>
+      </article>
+
+      <!-- Resumen Final y Exportación de Resultados DUA -->
+      <div class="dua-card p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="space-y-1">
+          <h3 class="text-lg font-extrabold">📄 Resumen de Aprendizaje y Progreso</h3>
+          <p class="text-xs sm:text-sm" style="color: var(--text-secondary);">Copia tu reporte de progreso y reflexión para pegarlo en tu plataforma educativa (CREA).</p>
+        </div>
+        <button type="button" onclick="copyLearningSummary()" class="px-5 py-3 rounded-xl font-bold text-sm text-white shadow-sm whitespace-nowrap" style="background: linear-gradient(135deg, #0D9488, #0284C7);">
+          📋 Copiar reporte completo
+        </button>
+      </div>
+      <div id="summary-copy-status" class="hidden p-3 rounded-xl text-sm font-bold text-center border" role="status"></div>
+
+    </section>
+
+  </main>
+
+  <footer class="max-w-6xl mx-auto px-4 mt-12 pt-6 border-t text-center text-xs space-y-1" style="border-color: var(--border-color); color: var(--text-muted);">
+    <p><strong>Recurso Educativo Abierto sobre Netiquetas</strong> — Diseñado bajo los principios del Diseño Universal para el Aprendizaje (DUA).</p>
+    <p>Incluye soporte de lectura en voz alta, modos de contraste, lectura fácil y evaluación formativa accesible.</p>
+  </footer>
+
+  <!-- ==========================================================================
+       LÓGICA INTERACTIVA, ACCESIBILIDAD DUA Y EVALUACIÓN
+       ========================================================================== -->
+  <script>
+    /* --------------------------------------------------------------------------
+       1. DATOS ESTRUCTURADOS DE LAS 11 REGLAS DE NETIQUETA
+       -------------------------------------------------------------------------- */
+    const NETIQUETTE_RULES = [
+      {
+        id: 1,
+        category: 'basic',
+        icon: '🤝',
+        title: 'Recordar que al otro lado hay un ser humano',
+        easy: 'Detrás de cada pantalla hay una persona con sentimientos. Sé amable antes de enviar un mensaje.',
+        detailed: 'Los textos y mensajes carecen de tono de voz o gestos; es fácil malinterpretar una frase. Aplica la empatía antes de enviar algo y pregúntate: "¿Le diría esto cara a cara?"',
+        doExample: 'Releer tu mensaje antes de enviarlo y añadir palabras amables ("Por favor", "Gracias").',
+        dontExample: 'Enviar comentarios hirientes o sarcásticos aprovechando que no ves la reacción del otro.'
+      },
+      {
+        id: 2,
+        category: 'basic',
+        icon: '🔠',
+        title: 'Evitar escribir todo en mayúsculas',
+        easy: 'Escribir TODO EN MAYÚSCULAS en Internet significa que estás gritando y cuesta leerlo.',
+        detailed: 'En el lenguaje digital, escribir palabras o frases completas en mayúsculas equivale a gritar, además de dificultar la lectura fluida del texto.',
+        doExample: 'Usar mayúsculas solo al iniciar una oración, en nombres propios o siglas.',
+        dontExample: 'Escribir: "NO ENTIENDO LA CONSIGNA, RESPONDAN YA".'
+      },
+      {
+        id: 3,
+        category: 'basic',
+        icon: '✍️',
+        title: 'Cuidar la ortografía y la gramática',
+        easy: 'Escribir bien demuestra respeto y ayuda a que todos entiendan tu mensaje.',
+        detailed: 'Una buena redacción proyecta respeto hacia el interlocutor y hace que el mensaje sea claro y fácil de entender, especialmente en espacios educativos.',
+        doExample: 'Revisar la puntuación y evitar abreviaturas confusas en foros o trabajos.',
+        dontExample: 'Escribir sin comas ni puntos de forma que cambie el sentido de la frase.'
+      },
+      {
+        id: 4,
+        category: 'basic',
+        icon: '⏳',
+        title: 'Respetar el tiempo y la atención de los demás',
+        easy: 'Sé breve, no mandes mensajes repetidos y respeta los horarios de descanso.',
+        detailed: 'Sé conciso, no envíes cadenas innecesarias de mensajes y no exijas respuestas inmediatas fuera de hora (noches, fines de semana o feriados).',
+        doExample: 'Agrupar tu consulta en un solo mensaje claro y respetar horarios de clase.',
+        dontExample: 'Enviar 10 mensajes seguidos de una palabra o reclamar si no responden al instante.'
+      },
+      {
+        id: 5,
+        category: 'basic',
+        icon: '🔒',
+        title: 'Cuidar la privacidad propia y ajena',
+        easy: 'No publiques fotos, datos o capturas de otras personas sin pedirles permiso.',
+        detailed: 'No publiques fotos, datos personales, números de teléfono o conversaciones privadas de terceros sin su consentimiento explícito.',
+        doExample: 'Preguntar antes de subir una foto grupal o compartir un contacto.',
+        dontExample: 'Reenviar capturas de pantalla de un chat privado para burlarse o exponer a alguien.'
+      },
+      {
+        id: 6,
+        category: 'basic',
+        icon: '🛡️',
+        title: 'No abusar del poder o ventajas técnicas',
+        easy: 'Si eres administrador o sabes más de tecnología, úsalo para ayudar, nunca para molestar.',
+        detailed: 'Si eres administrador de un grupo o tienes más conocimientos informáticos, no los uses para amedrentar, espiar, silenciar injustamente o avasallar a otros.',
+        doExample: 'Configurar el grupo para mantener el orden con justicia y ayudar a quienes tienen dudas técnicas.',
+        dontExample: 'Expulsar compañeros por broma o aprovechar fallos técnicos para perjudicar a otros.'
+      },
+      {
+        id: 7,
+        category: 'basic',
+        icon: '💡',
+        title: 'Compartir el conocimiento',
+        easy: 'Ayuda a responder dudas y comparte lo que sabes de forma generosa.',
+        detailed: 'El espíritu de Internet creció gracias a que las personas aportan soluciones, recursos útiles y responden dudas de forma desinteresada.',
+        doExample: 'Explicar en el foro cómo resolviste un problema técnico o compartir un buen enlace.',
+        dontExample: 'Guardar información útil solo para ti cuando un compañero pide ayuda.'
+      },
+      {
+        id: 8,
+        category: 'basic',
+        icon: '🌱',
+        title: 'Perdonar y corregir los errores ajenos',
+        easy: 'Si alguien se equivoca al escribir, corrígelo con amabilidad y por mensaje privado.',
+        detailed: 'Si alguien comete una errata ortográfica o un desliz, corrígelo con amabilidad y, de preferencia, por mensaje privado en lugar de humillarlo en público.',
+        doExample: 'Enviar un mensaje directo amable: "Hola, te aviso por aquí que se deslizó un error en el enlace".',
+        dontExample: 'Burlarte públicamente de la falta de ortografía de un compañero en el chat grupal.'
+      },
+      {
+        id: 9,
+        category: 'advanced',
+        icon: '⚖️',
+        title: 'Seguir los mismos estándares en línea que en la vida real',
+        easy: 'Pórtate en Internet con los mismos valores y respeto que en persona.',
+        detailed: 'Sé ético y respeta las leyes y normas de convivencia; el anonimato o la distancia de la pantalla no justifican conductas que no tendrías cara a cara.',
+        doExample: 'Mantener la honestidad académica y el respeto incluso detrás de un usuario o avatar.',
+        dontExample: 'Insultar o discriminar creyendo que "en Internet no pasa nada".'
+      },
+      {
+        id: 10,
+        category: 'advanced',
+        icon: '🧭',
+        title: 'Reconocer el lugar en el ciberespacio en el que te encuentras',
+        easy: 'Observa las reglas de cada grupo o plataforma antes de participar.',
+        detailed: 'La netiqueta varía según el dominio. Antes de participar en un foro, grupo o plataforma educativa, observa su dinámica y reglas específicas para adaptar tu tono (no es lo mismo un chat informal que un aula virtual).',
+        doExample: 'Leer las pautas del foro de CREA y usar un lenguaje adecuado al contexto educativo.',
+        dontExample: 'Usar jerga excesivamente informal o memes fuera de lugar en una entrega académica.'
+      },
+      {
+        id: 11,
+        category: 'advanced',
+        icon: '🕊️',
+        title: 'Ayudar a mantener las controversias bajo control (evitar el flaming)',
+        easy: 'Si hay una discusión, opina con calma y argumentos sin insultar.',
+        detailed: 'Si surge un desacuerdo o una discusión acalorada, aporta argumentos constructivos sin caer en insultos, provocaciones ni ataques personales (flaming) que desvíen el tema central.',
+        doExample: 'Decir: "Respeto tu punto de vista, pero creo que deberíamos considerar también este dato...".',
+        dontExample: 'Responder con agresiones personales cuando alguien opina distinto a ti.'
+      }
+    ];
+
+    /* --------------------------------------------------------------------------
+       2. ESTADO GLOBAL DE PROGRESO Y ACCESIBILIDAD
+       -------------------------------------------------------------------------- */
+    const state = {
+      exploredRules: new Set(),
+      debateCompleted: false,
+      quizCompleted: new Set(), // almacena ids 'q1'..'q6'
+      currentFilter: 'all',
+      searchQuery: '',
+      selectedPrompt: 0
+    };
+
+    function updateProgress() {
+      // Cálculo ponderado: 11 reglas (40%), Debate (20%), 6 preguntas (40%)
+      const rulesScore = (state.exploredRules.size / 11) * 40;
+      const debateScore = state.debateCompleted ? 20 : 0;
+      const quizScore = (state.quizCompleted.size / 6) * 40;
+      const total = Math.round(rulesScore + debateScore + quizScore);
+
+      const fill = document.getElementById('progress-bar-fill');
+      const text = document.getElementById('progress-text');
+      const container = document.getElementById('progress-bar-container');
+
+      fill.style.width = `${total}%`;
+      text.textContent = `${total}%`;
+      container.setAttribute('aria-valuenow', total);
+
+      // Actualizar insignias DUA
+      const bExp = document.getElementById('badge-explorer');
+      bExp.textContent = `🧭 Explorador (${state.exploredRules.size}/11)`;
+      if (state.exploredRules.size >= 11) {
+        bExp.classList.remove('opacity-40');
+        bExp.style.backgroundColor = 'var(--mint-soft)';
+        bExp.style.color = 'var(--mint-accent)';
+      }
+
+      const bDeb = document.getElementById('badge-debater');
+      if (state.debateCompleted) {
+        bDeb.classList.remove('opacity-40');
+        bDeb.style.backgroundColor = 'var(--accent-soft)';
+        bDeb.style.color = 'var(--accent-primary)';
+      }
+
+      const bQuiz = document.getElementById('badge-quiz');
+      if (state.quizCompleted.size >= 6) {
+        bQuiz.classList.remove('opacity-40');
+        bQuiz.style.backgroundColor = 'var(--success-bg)';
+        bQuiz.style.color = 'var(--success-text)';
+      }
+
+      document.getElementById('quiz-score-display').textContent = `${state.quizCompleted.size} / 6`;
+    }
+
+    /* --------------------------------------------------------------------------
+       3. CONTROLES DE ACCESIBILIDAD DUA (TEMA, FUENTE, DISLEXIA, LECTURA FÁCIL, VOZ)
+       -------------------------------------------------------------------------- */
+    function setTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      ['light', 'dark', 'contrast'].forEach(t => {
+        const btn = document.getElementById(`btn-theme-${t}`);
+        const active = t === theme;
+        btn.setAttribute('aria-pressed', active);
+        btn.style.backgroundColor = active ? 'var(--accent-primary)' : 'transparent';
+        btn.style.color = active ? (theme === 'contrast' ? '#000' : '#fff') : 'var(--text-primary)';
+      });
+    }
+
+    function setFontSize(size) {
+      document.documentElement.setAttribute('data-font', size);
+      ['normal', 'large', 'xlarge'].forEach(s => {
+        const btn = document.getElementById(`btn-font-${s}`);
+        const active = s === size;
+        btn.setAttribute('aria-pressed', active);
+        btn.style.backgroundColor = active ? 'var(--accent-primary)' : 'transparent';
+        btn.style.color = active ? '#fff' : 'var(--text-primary)';
+      });
+    }
+
+    function toggleDyslexia() {
+      const html = document.documentElement;
+      const isDys = html.getAttribute('data-dyslexia') === 'true';
+      html.setAttribute('data-dyslexia', !isDys);
+      const btn = document.getElementById('btn-dyslexia');
+      btn.setAttribute('aria-pressed', !isDys);
+      btn.style.backgroundColor = !isDys ? 'var(--accent-soft)' : 'var(--bg-card-alt)';
+      btn.style.borderColor = !isDys ? 'var(--accent-primary)' : 'var(--border-color)';
+    }
+
+    function toggleEasyRead() {
+      const html = document.documentElement;
+      const isEasy = html.getAttribute('data-easyread') === 'true';
+      html.setAttribute('data-easyread', !isEasy);
+      const btn = document.getElementById('btn-easyread');
+      btn.setAttribute('aria-pressed', !isEasy);
+      btn.style.backgroundColor = !isEasy ? 'var(--mint-soft)' : 'var(--bg-card-alt)';
+      btn.style.borderColor = !isEasy ? 'var(--mint-accent)' : 'var(--border-color)';
+    }
+
+    // Lectura en Voz Alta (Web Speech API en Español)
+    let currentSpeakingEl = null;
+
+    function speakElement(elementId) {
+      if (!('speechSynthesis' in window)) return;
+      stopSpeech();
+
+      const el = document.getElementById(elementId);
+      if (!el) return;
+
+      // Clonar para limpiar textos ocultos (easy vs detailed) antes de leer
+      const clone = el.cloneNode(true);
+      const isEasy = document.documentElement.getAttribute('data-easyread') === 'true';
+      clone.querySelectorAll(isEasy ? '.detailed-text' : '.easy-text').forEach(n => n.remove());
+      clone.querySelectorAll('button, select, input').forEach(n => n.remove());
+
+      const textToRead = clone.innerText.replace(/\s+/g, ' ').trim();
+      const utterance = new SpeechSynthesisUtterance(textToRead);
+      utterance.lang = 'es-ES';
+      utterance.rate = 0.98;
+
+      el.classList.add('tts-speaking');
+      currentSpeakingEl = el;
+      document.getElementById('btn-stop-tts').classList.remove('hidden');
+      document.getElementById('btn-stop-tts').classList.add('inline-flex');
+
+      utterance.onend = () => stopSpeech();
+      utterance.onerror = () => stopSpeech();
+
+      window.speechSynthesis.speak(utterance);
+    }
+
+    function stopSpeech() {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      }
+      if (currentSpeakingEl) {
+        currentSpeakingEl.classList.remove('tts-speaking');
+        currentSpeakingEl = null;
+      }
+      const stopBtn = document.getElementById('btn-stop-tts');
+      stopBtn.classList.add('hidden');
+      stopBtn.classList.remove('inline-flex');
+    }
+
+    /* --------------------------------------------------------------------------
+       4. NAVEGACIÓN POR PESTAÑAS Y ESCENARIO COMPARATIVO
+       -------------------------------------------------------------------------- */
+    function switchTab(tabId) {
+      stopSpeech();
+      const tabs = ['tab-intro', 'tab-rules', 'tab-debate', 'tab-quiz'];
+      tabs.forEach(t => {
+        const panel = document.getElementById(`panel-${t.replace('tab-', '')}`);
+        const btn = document.getElementById(`tab-btn-${t.replace('tab-', '')}`);
+        const isSelected = t === tabId;
+
+        panel.classList.toggle('hidden', !isSelected);
+        btn.setAttribute('aria-selected', isSelected);
+        if (isSelected) {
+          btn.style.backgroundColor = 'var(--accent-primary)';
+          btn.style.color = '#fff';
+        } else {
+          btn.style.backgroundColor = 'transparent';
+          btn.style.color = 'var(--text-primary)';
+        }
+      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function toggleScenario(type) {
+      const box = document.getElementById('scenario-box');
+      const btnBad = document.getElementById('btn-scen-bad');
+      const btnGood = document.getElementById('btn-scen-good');
+
+      if (type === 'bad') {
+        box.style.backgroundColor = 'var(--danger-bg)';
+        box.style.borderColor = 'var(--danger-border)';
+        box.style.color = 'var(--danger-text)';
+        box.innerHTML = `
+          <p class="font-mono text-sm sm:text-base font-bold mb-2">"MANDAME EL TRABAJO YA PORQ NO ENTIENDO NADA Y ES PARA HOY!!!"</p>
+          <p class="text-xs sm:text-sm"><strong>¿Qué percibe quien lo lee?</strong> Parece que le están gritando, exige atención inmediata sin saludar, tiene faltas ortográficas y no demuestra empatía por el tiempo del compañero.</p>
+        `;
+        btnBad.style.backgroundColor = 'var(--danger-bg)';
+        btnBad.style.color = 'var(--danger-text)';
+        btnGood.style.backgroundColor = 'transparent';
+        btnGood.style.color = 'var(--text-primary)';
+      } else {
+        box.style.backgroundColor = 'var(--success-bg)';
+        box.style.borderColor = 'var(--success-border)';
+        box.style.color = 'var(--success-text)';
+        box.innerHTML = `
+          <p class="font-mono text-sm sm:text-base font-bold mb-2">"Hola, ¿cómo estás? Disculpa la molestia, ¿me podrías orientar con la consigna de hoy cuando tengas un momento? ¡Muchas gracias!"</p>
+          <p class="text-xs sm:text-sm"><strong>¿Qué percibe quien lo lee?</strong> Un trato cordial y humano, respeta el tiempo ajeno, cuida la ortografía y genera buena disposición para colaborar.</p>
+        `;
+        btnGood.style.backgroundColor = 'var(--success-bg)';
+        btnGood.style.color = 'var(--success-text)';
+        btnBad.style.backgroundColor = 'transparent';
+        btnBad.style.color = 'var(--text-primary)';
+      }
+    }
+
+    /* --------------------------------------------------------------------------
+       5. RENDERIZADO INTERACTIVO DE LAS 11 REGLAS
+       -------------------------------------------------------------------------- */
+    function renderRules() {
+      const grid = document.getElementById('rules-grid');
+      const filtered = NETIQUETTE_RULES.filter(rule => {
+        const matchesCat = state.currentFilter === 'all' || rule.category === state.currentFilter;
+        const q = state.searchQuery.toLowerCase();
+        const matchesSearch = !q ||
+          rule.title.toLowerCase().includes(q) ||
+          rule.detailed.toLowerCase().includes(q) ||
+          rule.easy.toLowerCase().includes(q);
+        return matchesCat && matchesSearch;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `<div class="col-span-full dua-card p-8 text-center"><p class="font-bold">No se encontraron reglas con esa búsqueda.</p></div>`;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(rule => {
+        const isExplored = state.exploredRules.has(rule.id);
+        const badgeLabel = rule.category === 'basic' ? 'Básica' : 'Avanzada';
+        const badgeStyle = rule.category === 'basic'
+          ? 'background-color: var(--accent-soft); color: var(--accent-primary);'
+          : 'background-color: var(--mint-soft); color: var(--mint-accent);';
+
+        return `
+          <article class="dua-card p-5 flex flex-col justify-between space-y-4" id="rule-card-${rule.id}">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between gap-2">
+                <div class="flex items-center gap-2">
+                  <span class="w-8 h-8 rounded-lg flex items-center justify-center font-extrabold text-sm text-white" style="background-color: var(--accent-primary);">
+                    ${rule.id}
+                  </span>
+                  <span class="px-2.5 py-0.5 rounded-md text-xs font-bold" style="${badgeStyle}">${badgeLabel}</span>
+                  ${isExplored ? '<span class="text-xs font-bold text-emerald-600" title="Regla explorada">✔ Leída</span>' : ''}
+                </div>
+                <button type="button" onclick="speakElement('rule-card-${rule.id}'); markRuleExplored(${rule.id});"
+                  class="px-2.5 py-1 rounded-lg border text-xs font-semibold hover:opacity-80"
+                  style="border-color: var(--border-color);" aria-label="Escuchar regla ${rule.id}: ${rule.title}">
+                  🔊 Escuchar
+                </button>
+              </div>
+
+              <h3 class="text-lg font-extrabold flex items-start gap-2">
+                <span aria-hidden="true">${rule.icon}</span>
+                <span>${rule.title}</span>
+              </h3>
+
+              <p class="detailed-text text-sm sm:text-base" style="color: var(--text-secondary);">${rule.detailed}</p>
+              <p class="easy-text text-sm sm:text-base font-medium" style="color: var(--text-secondary);">${rule.easy}</p>
+            </div>
+
+            <!-- Desplegable interactivo: Qué hacer vs. Qué evitar -->
+            <div class="pt-2 border-t" style="border-color: var(--border-color);">
+              <button type="button" onclick="toggleRuleExamples(${rule.id})" aria-expanded="false" aria-controls="examples-${rule.id}"
+                class="w-full py-2 px-3 rounded-xl text-xs font-bold flex items-center justify-between transition-colors"
+                style="background-color: var(--bg-card-alt); color: var(--accent-primary);">
+                <span>Ver ejemplos prácticos (Sí hacer / Evitar)</span>
+                <span id="arrow-${rule.id}">▼</span>
+              </button>
+
+              <div id="examples-${rule.id}" class="hidden mt-3 space-y-2 text-xs sm:text-sm">
+                <div class="p-2.5 rounded-lg border" style="background-color: var(--success-bg); border-color: var(--success-border); color: var(--success-text);">
+                  <strong>✅ Sí hacer:</strong> ${rule.doExample}
+                </div>
+                <div class="p-2.5 rounded-lg border" style="background-color: var(--danger-bg); border-color: var(--danger-border); color: var(--danger-text);">
+                  <strong>❌ Evitar:</strong> ${rule.dontExample}
+                </div>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function toggleRuleExamples(id) {
+      const box = document.getElementById(`examples-${id}`);
+      const arrow = document.getElementById(`arrow-${id}`);
+      const isHidden = box.classList.contains('hidden');
+      box.classList.toggle('hidden');
+      arrow.textContent = isHidden ? '▲' : '▼';
+      markRuleExplored(id);
+    }
+
+    function markRuleExplored(id) {
+      if (!state.exploredRules.has(id)) {
+        state.exploredRules.add(id);
+        updateProgress();
+      }
+    }
+
+    function filterRules(cat) {
+      state.currentFilter = cat;
+      ['all', 'basic', 'advanced'].forEach(c => {
+        const btn = document.getElementById(`filter-${c}`);
+        const active = c === cat;
+        btn.style.backgroundColor = active ? 'var(--accent-primary)' : 'var(--bg-card-alt)';
+        btn.style.color = active ? '#fff' : 'var(--text-primary)';
+        btn.style.borderColor = active ? 'var(--accent-primary)' : 'var(--border-color)';
+      });
+      renderRules();
+    }
+
+    function searchRules(query) {
+      state.searchQuery = query;
+      renderRules();
+    }
+
+    /* --------------------------------------------------------------------------
+       6. MÓDULO 3: DEBATE Y ANALIZADOR EN VIVO DE NETIQUETA
+       -------------------------------------------------------------------------- */
+    function selectDebatePrompt(num) {
+      state.selectedPrompt = num;
+      const labels = {
+        1: 'Tema 1: El impacto del tono',
+        2: 'Tema 2: Límites y poder digital',
+        3: 'Tema 3: Derecho a la desconexión'
+      };
+      document.getElementById('selected-prompt-badge').textContent = labels[num];
+      [1, 2, 3].forEach(n => {
+        const card = document.getElementById(`prompt-card-${n}`);
+        card.style.borderColor = n === num ? 'var(--accent-primary)' : 'var(--border-color)';
+      });
+      document.getElementById('debate-textarea').focus();
+    }
+
+    function analyzeMessageLive() {
+      const text = document.getElementById('debate-textarea').value;
+      document.getElementById('char-counter').textContent = `${text.length} caracteres`;
+
+      if (text.trim().length === 0) {
+        resetChecklist();
+        return;
+      }
+
+      // 1. Detección de mayúsculas (Regla 2)
+      const letters = text.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ]/g, '');
+      const upperLetters = letters.replace(/[^A-ZÁÉÍÓÚÑ]/g, '');
+      const capsRatio = letters.length > 5 ? (upperLetters.length / letters.length) : 0;
+
+      if (capsRatio > 0.5) {
+        setCheckStatus('caps', 'warn', '⚠️ ¡Cuidado! Más del 50% está en mayúsculas; parece que estás gritando.');
+      } else {
+        setCheckStatus('caps', 'ok', '✅ Excelente: uso adecuado de mayúsculas y minúsculas.');
+      }
+
+      // 2. Empatía / Cortesía (Regla 1)
+      const politeWords = /(hola|buen|saludos|compañer|gracias|opino|parece|respeto|empatía|acuerdo)/i;
+      if (politeWords.test(text)) {
+        setCheckStatus('greeting', 'ok', '✅ Se detecta un tono cordial, empático o dialogante.');
+      } else {
+        setCheckStatus('greeting', 'neutral', '💡 Sugerencia: inicia con un saludo breve o dirige tu aporte con amabilidad.');
+      }
+
+      // 3. Profundidad y claridad (Reglas 3 y 4)
+      if (text.trim().length >= 40) {
+        setCheckStatus('length', 'ok', '✅ Buen desarrollo: tu aporte tiene extensión suficiente para argumentar.');
+      } else {
+        setCheckStatus('length', 'neutral', `⏳ Escribe un poco más (${text.trim().length}/40 caracteres) para fundamentar tu idea.`);
+      }
+
+      // 4. Control de controversias (Regla 11)
+      const aggressivePattern = /(tonto|idiota|estupido|estúpido|callate|cállate|basura|!!!+)/i;
+      if (aggressivePattern.test(text)) {
+        setCheckStatus('respect', 'warn', '⚠️ Evita palabras agresivas o signos repetidos (!!!). Mantén el debate constructivo.');
+      } else {
+        setCheckStatus('respect', 'ok', '✅ Tono respetuoso y libre de agresiones.');
+      }
+    }
+
+    function setCheckStatus(key, status, message) {
+      const box = document.getElementById(`chk-${key}`);
+      const icon = document.getElementById(`icon-${key}`);
+      const desc = document.getElementById(`desc-${key}`);
+      desc.textContent = message;
+
+      if (status === 'ok') {
+        icon.textContent = '✅';
+        box.style.borderColor = 'var(--success-border)';
+      } else if (status === 'warn') {
+        icon.textContent = '⚠️';
+        box.style.borderColor = 'var(--danger-border)';
+      } else {
+        icon.textContent = '💡';
+        box.style.borderColor = 'var(--border-color)';
+      }
+    }
+
+    function resetChecklist() {
+      ['caps', 'greeting', 'length', 'respect'].forEach(k => {
+        document.getElementById(`icon-${k}`).textContent = '⚪';
+        document.getElementById(`chk-${k}`).style.borderColor = 'var(--border-color)';
+      });
+    }
+
+    function showDebateBanner(msg, type) {
+      const banner = document.getElementById('debate-feedback-banner');
+      banner.classList.remove('hidden');
+      banner.textContent = msg;
+      if (type === 'success') {
+        banner.style.backgroundColor = 'var(--success-bg)';
+        banner.style.borderColor = 'var(--success-border)';
+        banner.style.color = 'var(--success-text)';
+      } else {
+        banner.style.backgroundColor = 'var(--warning-bg)';
+        banner.style.borderColor = 'var(--warning-border)';
+        banner.style.color = 'var(--warning-text)';
+      }
+    }
+
+    function simulatePost() {
+      const text = document.getElementById('debate-textarea').value.trim();
+      if (text.length < 20) {
+        showDebateBanner('Escribe una reflexión un poco más completa antes de simular tu publicación en el foro.', 'warn');
+        return;
+      }
+
+      const container = document.getElementById('simulated-forum-container');
+      const postsList = document.getElementById('simulated-forum-posts');
+      container.classList.remove('hidden');
+
+      const postEl = document.createElement('div');
+      postEl.className = 'dua-card-alt p-4 space-y-1.5 animate-fade-in';
+      postEl.innerHTML = `
+        <div class="flex items-center justify-between text-xs">
+          <span class="font-bold" style="color: var(--accent-primary);">👤 Tu participación (Estudiante)</span>
+          <span style="color: var(--text-muted);">Publicado ahora</span>
+        </div>
+        <p class="text-sm whitespace-pre-line">${escapeHTML(text)}</p>
+      `;
+      postsList.prepend(postEl);
+
+      state.debateCompleted = true;
+      updateProgress();
+      showDebateBanner('¡Excelente! Tu aporte se simuló en el foro y desbloqueaste la insignia "Comunicador Empático".', 'success');
+    }
+
+    function copyDebateMessage() {
+      const textarea = document.getElementById('debate-textarea');
+      if (!textarea.value.trim()) {
+        showDebateBanner('El cuadro de texto está vacío. Escribe tu aporte primero.', 'warn');
+        return;
+      }
+      copyTextFallback(textarea.value);
+      showDebateBanner('📋 ¡Texto copiado al portapapeles! Ya puedes pegarlo directamente en el foro de CREA.', 'success');
+    }
+
+    /* --------------------------------------------------------------------------
+       7. MÓDULO 4: AUTOEVALUACIÓN INTERACTIVA (LOS 6 TIPOS DE PREGUNTAS)
+       -------------------------------------------------------------------------- */
+    function setQuizFeedback(id, isCorrect, message) {
+      const box = document.getElementById(`${id}-feedback`);
+      box.classList.remove('hidden');
+      box.innerHTML = message;
+      if (isCorrect) {
+        box.style.backgroundColor = 'var(--success-bg)';
+        box.style.borderColor = 'var(--success-border)';
+        box.style.color = 'var(--success-text)';
+        state.quizCompleted.add(id);
+        updateProgress();
+      } else {
+        box.style.backgroundColor = 'var(--danger-bg)';
+        box.style.borderColor = 'var(--danger-border)';
+        box.style.color = 'var(--danger-text)';
+      }
+    }
+
+    // Pregunta 1: Verdadero / Falso
+    function checkQ1(userAnswer) {
+      const btnT = document.getElementById('q1-btn-true');
+      const btnF = document.getElementById('q1-btn-false');
+      btnT.style.borderColor = userAnswer === true ? 'var(--accent-primary)' : 'var(--border-color)';
+      btnF.style.borderColor = userAnswer === false ? 'var(--accent-primary)' : 'var(--border-color)';
+
+      if (userAnswer === false) {
+        setQuizFeedback('q1', true, '<strong>✅ ¡Correcto! Es Falso.</strong> En la comunicación digital, escribir todo en mayúsculas equivale a gritar y dificulta la lectura.');
+      } else {
+        setQuizFeedback('q1', false, '<strong>❌ Incorrecto.</strong> Recuerda la Regla 2: escribir TODO EN MAYÚSCULAS equivale a gritar y hace más difícil leer el mensaje.');
+      }
+    }
+
+    // Pregunta 2: Opción múltiple
+    function checkQ2(selectedIndex) {
+      const buttons = document.querySelectorAll('.q2-opt');
+      buttons.forEach((btn, idx) => {
+        btn.style.borderColor = idx === selectedIndex ? 'var(--accent-primary)' : 'var(--border-color)';
+        btn.style.backgroundColor = idx === selectedIndex ? 'var(--accent-soft)' : 'transparent';
+      });
+
+      if (selectedIndex === 1) {
+        setQuizFeedback('q2', true, '<strong>✅ ¡Excelente!</strong> Según la Regla 8, debemos perdonar y corregir los errores ajenos con amabilidad y por mensaje privado para no humillar en público.');
+      } else {
+        setQuizFeedback('q2', false, '<strong>❌ Inténtalo de nuevo.</strong> Piensa en cómo te sentirías si te corrigieran delante de todos. Revisa la Regla 8 sobre cómo corregir errores ajenos.');
+      }
+    }
+
+    // Pregunta 3: Ordenamiento accesible con botones subir/bajar
+    let q3Items = [
+      { id: 3, text: 'Revisar que el mensaje no contenga datos privados ni fotos de terceros sin consentimiento.' },
+      { id: 1, text: 'Observar la dinámica del espacio y leer sus reglas específicas antes de intervenir.' },
+      { id: 4, text: 'Publicar el aporte y responder con argumentos constructivos ante posibles desacuerdos.' },
+      { id: 2, text: 'Redactar un aporte conciso, cuidando la ortografía, la gramática y el tono respetuoso.' }
+    ];
+
+    function renderQ3() {
+      const list = document.getElementById('q3-list');
+      list.innerHTML = q3Items.map((item, idx) => `
+        <li class="dua-card-alt p-3.5 flex items-center justify-between gap-3">
+          <div class="flex items-center gap-3">
+            <span class="w-7 h-7 rounded-lg flex items-center justify-center font-bold text-xs text-white flex-shrink-0" style="background-color: var(--accent-primary);">
+              ${idx + 1}
+            </span>
+            <span class="text-sm sm:text-base font-medium">${item.text}</span>
+          </div>
+          <div class="flex items-center gap-1 flex-shrink-0">
+            <button type="button" onclick="moveQ3(${idx}, -1)" ${idx === 0 ? 'disabled' : ''}
+              class="p-2 rounded-lg border text-xs font-bold disabled:opacity-30" style="border-color: var(--border-color);"
+              aria-label="Subir paso ${idx + 1}">↑</button>
+            <button type="button" onclick="moveQ3(${idx}, 1)" ${idx === q3Items.length - 1 ? 'disabled' : ''}
+              class="p-2 rounded-lg border text-xs font-bold disabled:opacity-30" style="border-color: var(--border-color);"
+              aria-label="Bajar paso ${idx + 1}">↓</button>
+          </div>
+        </li>
+      `).join('');
+    }
+
+    function moveQ3(index, dir) {
+      const target = index + dir;
+      if (target < 0 || target >= q3Items.length) return;
+      [q3Items[index], q3Items[target]] = [q3Items[target], q3Items[index]];
+      renderQ3();
+    }
+
+    function checkQ3() {
+      const isCorrect = q3Items.every((item, idx) => item.id === idx + 1);
+      if (isCorrect) {
+        setQuizFeedback('q3', true, '<strong>✅ ¡Orden perfecto!</strong> Primero observas el lugar, luego redactas con cuidado, verificas la privacidad y finalmente publicas y debates con respeto.');
+      } else {
+        setQuizFeedback('q3', false, '<strong>❌ El orden aún no es correcto.</strong> Asegúrate de que el primer paso sea observar las reglas del espacio y el último sea publicar y debatir.');
+      }
+    }
+
+    // Pregunta 4: Respuesta abierta con rúbrica de autoevaluación
+    function checkQ4() {
+      const answer = document.getElementById('q4-input').value.trim();
+      const c1 = document.getElementById('rubric-1').checked;
+      const c2 = document.getElementById('rubric-2').checked;
+      const c3 = document.getElementById('rubric-3').checked;
+
+      if (answer.length < 25) {
+        setQuizFeedback('q4', false, '<strong>⚠️ Respuesta muy breve.</strong> Desarrolla un poco más tu explicación antes de registrar tu autoevaluación.');
+        return;
+      }
+      if (!c1 || !c2 || !c3) {
+        setQuizFeedback('q4', false, '<strong>📋 Revisa la rúbrica:</strong> Asegúrate de cumplir y marcar los 3 criterios de autoevaluación para validar esta actividad.');
+        return;
+      }
+      setQuizFeedback('q4', true, '<strong>✅ ¡Autoevaluación registrada!</strong> Has reflexionado sobre la empatía digital y verificado tu trabajo con la rúbrica.');
+    }
+
+    // Pregunta 5: Completar espacios en blanco
+    function checkQ5() {
+      const b1 = document.getElementById('blank-1').value.trim().toLowerCase();
+      const b2 = document.getElementById('blank-2').value.trim().toLowerCase();
+
+      const validB1 = b1 === 'flaming';
+      const validB2 = ['amedrentar', 'espiar', 'avasallar'].includes(b2);
+
+      if (validB1 && validB2) {
+        setQuizFeedback('q5', true, '<strong>✅ ¡Correcto!</strong> Evitar el <em>flaming</em> (ataques personales) y no usar ventajas técnicas para <em>amedrentar</em> o <em>espiar</em> son pilares clave.');
+      } else {
+        setQuizFeedback('q5', false, '<strong>❌ Revisa tus palabras.</strong> Pista: el primer término está en inglés (empieza con <em>flam...</em>) y el segundo es una acción de abuso de poder (ej. <em>amedrentar</em> o <em>espiar</em>).');
+      }
+    }
+
+    // Pregunta 6: Correspondencia
+    function checkQ6() {
+      const m1 = document.getElementById('match-1').value === 'time';
+      const m2 = document.getElementById('match-2').value === 'share';
+      const m3 = document.getElementById('match-3').value === 'privacy';
+      const m4 = document.getElementById('match-4').value === 'real';
+
+      if (m1 && m2 && m3 && m4) {
+        setQuizFeedback('q6', true, '<strong>✅ ¡Todas las correspondencias son correctas!</strong> Has asociado cada principio de netiqueta con su aplicación práctica.');
+      } else {
+        setQuizFeedback('q6', false, '<strong>❌ Hay alguna relación incorrecta o sin seleccionar.</strong> Revisa con calma las 4 opciones desplegables.');
+      }
+    }
+
+    function toggleHint(hintId) {
+      document.getElementById(hintId).classList.toggle('hidden');
+    }
+
+    /* --------------------------------------------------------------------------
+       8. UTILIDADES (COPIADO SEGURO EN IFRAME Y SANITIZACIÓN)
+       -------------------------------------------------------------------------- */
+    function escapeHTML(str) {
+      return str.replace(/[&<>'"]/g, tag => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
+      }[tag]));
+    }
+
+    function copyTextFallback(text) {
+      const temp = document.createElement('textarea');
+      temp.value = text;
+      temp.style.position = 'fixed';
+      temp.style.opacity = '0';
+      document.body.appendChild(temp);
+      temp.select();
+      document.execCommand('copy');
+      document.body.removeChild(temp);
+    }
+
+    function copyLearningSummary() {
+      const debateText = document.getElementById('debate-textarea').value.trim() || '(Sin redactar aún)';
+      const q4Text = document.getElementById('q4-input').value.trim() || '(Sin redactar aún)';
+      const report = [
+        '=== REPORTE DE APRENDIZAJE: NETIQUETAS (DUA) ===',
+        `• Reglas exploradas: ${state.exploredRules.size} de 11`,
+        `• Actividades de autoevaluación completadas: ${state.quizCompleted.size} de 6`,
+        `• Reflexión para el Foro: ${debateText}`,
+        `• Respuesta sobre Empatía Digital: ${q4Text}`
+      ].join('\n');
+
+      copyTextFallback(report);
+      const status = document.getElementById('summary-copy-status');
+      status.classList.remove('hidden');
+      status.style.backgroundColor = 'var(--success-bg)';
+      status.style.borderColor = 'var(--success-border)';
+      status.style.color = 'var(--success-text)';
+      status.textContent = '✅ ¡Reporte completo copiado al portapapeles! Ya puedes pegarlo en tu entrega de CREA.';
+    }
+
+    // Inicialización al cargar
+    window.addEventListener('DOMContentLoaded', () => {
+      setTheme('light');
+      setFontSize('normal');
+      switchTab('tab-intro');
+      renderRules();
+      renderQ3();
+      updateProgress();
+    });
+  </script>
+</body>
+</html>
